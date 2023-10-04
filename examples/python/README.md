@@ -12,8 +12,6 @@ Please find `aqvisa.proto` in the `proto/` directory.
 
 Execute the following command to compile 
 
-For more information about protobuf, please visit [Protocol Buffers](https://protobuf.dev/) official website.
-
 ```
 python -m grpc_tools.protoc -Iproto 
                             --python_out=. 
@@ -21,6 +19,8 @@ python -m grpc_tools.protoc -Iproto
                             --grpc_python_out=. 
                             proto/aqvisa.proto
 ``````
+
+For more information about protobuf, please visit [Protocol Buffers](https://protobuf.dev/) official website.
 
 ## Sample Client
 
