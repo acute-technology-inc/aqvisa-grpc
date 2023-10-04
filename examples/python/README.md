@@ -4,7 +4,9 @@ This directory contains an example implementation for client in Python.
 
 ## Requirements
 
+```
 pip install -r requirements.txt
+```
 
 ## Protobuf Complile
 
