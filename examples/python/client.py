@@ -11,7 +11,7 @@ command_list = [
     b"*LA:CAPTURE:START",
 ]
 
-address = "192.168.1.211:5025"
+address = "<address>:<ip>"
 
 async def viSingleRequest(strCommand: bytes) -> None:
     async with grpc.aio.insecure_channel(address) as channel:
