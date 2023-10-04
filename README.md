@@ -25,6 +25,8 @@ Only support on software version from `1.7.62` or above.
 
 ## References
 
+* [Acute official website](https://www.acute.com.tw/logic-analyzer-en)
+
 * [AqVISA docs](https://www.acute.com.tw/logic-analyzer-en/support/download/sdk-dll)
 
 * [gRPC docs](https://grpc.io/docs/)
