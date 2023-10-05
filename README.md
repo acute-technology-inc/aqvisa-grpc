@@ -6,26 +6,36 @@ This repository contains the gRPC .proto definition file that expose AqVISA APIs
 
 Products that support gRPC remote control
 
-* Mixed Signal Oscilloscope
-    
-    * Acute MSO3000 series
-    * Acute MSO2000 series
+| Types                        | Product                                                                             | 
+| ---------------------------- | ----------------------------------------------------------------------------------- |
+| Mixed Signal Oscilloscope    | Acute MSO3000<br>Acute MSO2000 series                                               |
+| Digital Storage Oscilloscope | Acute TravelScope 3000 series                                                       |
+| Logic Analyzer               | Acute TravelBus 3000 series<br>Acute TravelLogic 4000 series<br>Acute LA3000 series |
+| Protocol Analyzer            | Acute BusFinder 7000 series                                                         | 
 
-* Digital Storage Oscilloscope
+Each product with its corresponding supported software version is listed below. 
 
-    * Acute TravelScope3000 series
+| Software (x64)          | Version         | 
+| ----------------------- | --------------- |
+| MSO                     | 1.7.62 or above |
+| MSO (Full)              | 1.7.62 or above |
+| BusFinder               | 1.7.57 or above |
+| Logic Analyzer (LA3000) | 1.7.57 or above |
+| TravelLogic             | 1.7.36 or above |
+| TravelBus               | 1.7.18 or above | 
 
-Only support on software version from `1.7.62` or above.
 
 ## Contents
 
-`examples` contains sample client-side code.
+`examples/` contains sample client-side code.
 
-`proto` contains protocol buffer definition files.
+`proto/` contains protocol buffer definition files.
 
 ## References
 
-* [Acute official website](https://www.acute.com.tw/logic-analyzer-en)
+* [Acute Official Website](https://www.acute.com.tw/logic-analyzer-en)
+
+* [Acute Software Download](https://www.acute.com.tw/logic-analyzer-en/support/download/software)
 
 * [AqVISA docs](https://www.acute.com.tw/logic-analyzer-en/support/download/sdk-dll)
 
