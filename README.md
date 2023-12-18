@@ -33,11 +33,11 @@ Each product with its corresponding supported software version is listed below.
 
 ## References
 
-* [Acute Official Website](https://www.acute.com.tw/logic-analyzer-en)
+* [Acute Official Website](https://www.acute.com.tw/en/)
 
-* [Acute Software Download](https://www.acute.com.tw/logic-analyzer-en/support/download/software)
+* [Acute Software Download](https://www.acute.com.tw/en/install)
 
-* [AqVISA docs](https://www.acute.com.tw/logic-analyzer-en/support/download/sdk-dll)
+* [AqVISA docs](https://www.acute.com.tw/en/sdkDLL)
 
 * [gRPC docs](https://grpc.io/docs/)
 
