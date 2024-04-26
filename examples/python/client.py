@@ -5,12 +5,13 @@ import aqvisa_pb2_grpc
 
 # Command List
 command_list = [
-    # b"*STB?",
+    b"*IDN?",
+    # b"*LA:CAPTURE:START"
     # b"*LA:CAPTURE:TRIGGERED?",
     # b"*LA:CAPTURE:PROGRESS?",
-    b"*LA:CAPTURE:START",
 ]
 
+# TODO: Replace this with your own setup
 address = "<address>:<ip>"
 
 async def viSingleRequest(strCommand: bytes) -> None:
@@ -33,26 +34,13 @@ async def viSingleRequest(strCommand: bytes) -> None:
             return
         
         await asyncio.sleep(1)
-    
-        # Wait for the command finish executing
-        # response returns the result of the viWrite command
-        while True:
-            response = await stub.ViGetCommandResult(aqvisa_pb2.ViGetCommandResultRequest(job_id=job_id))
-
-            # If command still processing, status code will remain AQVI_PREVIOUS_CMD_PROCESSING
-            # If it finishes its process, it will return other status code (refer to aqvisa.proto)
-            # No error: AQVI_NO_ERROR, Error: other possibilities
-            if response.status_code != aqvisa_pb2.AQVI_PREVIOUS_CMD_PROCESSING:
-                print(f"viGetCommandResult\n" +
-                      f"\t- Status Code: {response.status_code}")
-                break
-            await asyncio.sleep(3)
         
         # viRead
         # Query the result of the command if result exists
-        response = await stub.ViRead(aqvisa_pb2.ViReadRequest(job_id=job_id))
+        response = await stub.ViRead(aqvisa_pb2.ViReadRequest(count=200_000_000))
         print(f"viRead\n" +
               f"\t- Status Code: {response.status_code}\n" +
+              f"\t- Return Count: {response.ret_count}\n" +
               f"\t- Response: {response.command_response}")
 
 
