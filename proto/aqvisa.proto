@@ -5,7 +5,9 @@ package aqvisa;
 service AqVISA {
     rpc ViWrite (ViWriteRequest) returns (ViWriteResponse) {}
     rpc ViRead (ViReadRequest) returns (ViReadResponse) {}
-    rpc ViGetCommandResult (ViGetCommandResultRequest) returns (ViGetCommandResultResponse) {}
+    rpc ViGetCommandResult (ViGetCommandResultRequest) returns (ViGetCommandResultResponse) {
+        option deprecated = true;
+    }
 }
 
 // Enums
@@ -73,18 +75,22 @@ message ViWriteResponse {
 }
 
 message ViGetCommandResultRequest {
+    option deprecated = true;
     bytes job_id = 1;
 }
 
 message ViGetCommandResultResponse {
+    option deprecated = true;
     AQVI_STATUS status_code = 1;
 }
 
 message ViReadRequest {
-    bytes job_id = 1;
+    bytes job_id = 1 [deprecated = true];
+    int64 count = 2;
 }
 
 message ViReadResponse {
     AQVI_STATUS status_code = 1;
     optional bytes command_response = 2;
+    optional int64 ret_count = 3;
 }
