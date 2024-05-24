@@ -10,7 +10,7 @@ Products that support gRPC remote control
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | Mixed Signal Oscilloscope    | Acute MSO3000 series<br>Acute MSO2000 series                                                               |
 | Digital Storage Oscilloscope | Acute TravelScope 3000 series                                                                              |
-| Logic Analyzer               | Acute TravelBus 3000 series<br>Acute TravelLogic 4000 series<br>Acute LA3000 series<br>Acute LA4000 series |
+| Logic Analyzer               | Acute TravelBus 3000 series<br>Acute TravelBus 2000 series<br>Acute TravelBus 1000 series<br>Acute TravelLogic 4000 series<br>Acute TravelLogic 3000 series<br>Acute LA4000 series<br>Acute LA3000 series |
 | Protocol Analyzer            | Acute BusFinder 7000 series                                                                                | 
 
 Each product with its corresponding supported software version is listed below. 
