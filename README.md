@@ -2,28 +2,42 @@
 
 This repository contains the gRPC .proto definition file that expose AqVISA APIs via gRPC, and a sample client code in Python.
 
-## Requirements
+## Supported Products
 
 Products that support gRPC remote control
 
 | Types                        | Product                                                                                                    | 
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| Mixed Signal Oscilloscope    | Acute MSO3000 series<br>Acute MSO2000 series                                                               |
-| Digital Storage Oscilloscope | Acute TravelScope 3000 series                                                                              |
+| Mixed Signal Oscilloscope    | Acute MSO3000 series<br>Acute MSO2000 series<br>Acute MSO1000 series                                       |
+| Digital Storage Oscilloscope | Acute TravelScope3000 series                                                                               |
 | Logic Analyzer               | Acute TravelBus 3000 series<br>Acute TravelBus 2000 series<br>Acute TravelBus 1000 series<br>Acute TravelLogic 4000 series<br>Acute TravelLogic 3000 series<br>Acute LA4000 series<br>Acute LA3000 series |
 | Protocol Analyzer            | Acute BusFinder 7000 series                                                                                | 
 
 Each product with its corresponding supported software version is listed below. 
 
-| Software (x64)          | Version         | 
-| ----------------------- | --------------- |
-| MSO                     | 1.7.62 or above |
-| MSO (Full)              | 1.7.62 or above |
-| BusFinder               | 1.7.57 or above |
-| Logic Analyzer          | 1.7.57 or above |
-| TravelLogic             | 1.7.36 or above |
-| TravelBus               | 1.7.18 or above | 
+## Platforms
 
+### Windows
+
+| Software (x64)                | Version         | Download Link                               |
+| ----------------------------- | --------------- | ------------------------------------------- |
+| MSO                           | 1.8.10 or above | [Link](https://www.acute.com.tw/en/install) |
+| MSO (Full)                    | 1.8.10 or above | [Link](https://www.acute.com.tw/en/install) |
+| BusFinder and Logic Analyzer  | 1.8.09 or above | [Link](https://www.acute.com.tw/en/install) |
+| TravelLogic                   | 1.8.05 or above | [Link](https://www.acute.com.tw/en/install) |
+| TravelBus                     | 1.8.07 or above | [Link](https://www.acute.com.tw/en/install) |
+
+### Linux
+
+**_NOTE:_** The software on Linux platform are still marked as beta versions. Please create an issue if you encounter any errors when running the program.
+
+| Software (x86_64)             | Version         | Download Link                                                        |
+| ----------------------------- | --------------- | -------------------------------------------------------------------- |
+| MSO                           | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/mso-release/releases) |
+| DSO                           | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/dso-release/releases) |
+| BusFinder and Logic Analyzer  | 2.0.0 or above  | **TBD**                                                              |
+| TravelLogic                   | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tl-release/releases)  |
+| TravelBus                     | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tba-release/releases) |
 
 ## Contents
 
