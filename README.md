@@ -33,11 +33,11 @@ Each product with its corresponding supported software version is listed below.
 
 | Software (x86_64)             | Version         | Download Link                                                        |
 | ----------------------------- | --------------- | -------------------------------------------------------------------- |
-| MSO                           | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/mso-release/releases) |
-| DSO                           | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/dso-release/releases) |
-| BusFinder and Logic Analyzer  | 2.0.0 or above  | **TBD**                                                              |
-| TravelLogic                   | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tl-release/releases)  |
-| TravelBus                     | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tba-release/releases) |
+| Mixed_Signal_Oscilloscope     | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/mso-release/releases) |
+| Digital_Storage_Oscilloscope  | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/dso-release/releases) |
+| BusFinder_Logic_Analyzer      | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/bfa-release/releases) |
+| TravelLogic_Analyzer          | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tl-release/releases)  |
+| TravelBus_Analyzer            | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tba-release/releases) |
 
 ## Contents
 
