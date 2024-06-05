@@ -1,10 +1,27 @@
-# AqVISA with gRPC
+<h1 align=center>AqVISA with gRPC</h1>
 
-This repository contains the gRPC .proto definition file that expose AqVISA APIs via gRPC, and a sample client code in Python.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+AqVISA offers an intuitive interface for seamless management of controlling our software. With
+ [gRPC](https://grpc.io/docs/), it makes even easier for developers to manipulate the workflow.
+
+- **Acute official website**: https://www.acute.com.tw/en/
+- **Acute software download**: https://www.acute.com.tw/en/install
+- **AqVISA documentation**: https://www.acute.com.tw/en/sdkDLL
+- **Bug reports**: https://github.com/acute-technology-inc/aqvisa-grpc/issues
+
+## Contents
+
+[`examples/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/examples/python) 
+contains sample client-side controlling flow code.
+
+[`proto/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto) 
+contains protocol buffer definition files.
+
 
 ## Supported Products
 
-Products that support gRPC remote control
+Products that support [gRPC](https://grpc.io/docs/) remote control
 
 | Types                        | Product                                                                                                    | 
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -13,9 +30,10 @@ Products that support gRPC remote control
 | Logic Analyzer               | Acute TravelBus 3000 series<br>Acute TravelBus 2000 series<br>Acute TravelBus 1000 series<br>Acute TravelLogic 4000 series<br>Acute TravelLogic 3000 series<br>Acute LA4000 series<br>Acute LA3000 series |
 | Protocol Analyzer            | Acute BusFinder 7000 series                                                                                | 
 
-Each product with its corresponding supported software version is listed below. 
 
 ## Platforms
+
+Each product with its corresponding supported software version and platform is listed below. 
 
 ### Windows
 
@@ -39,20 +57,8 @@ Each product with its corresponding supported software version is listed below.
 | TravelLogic_Analyzer          | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tl-release/releases)  |
 | TravelBus_Analyzer            | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tba-release/releases) |
 
-## Contents
-
-`examples/` contains sample client-side code.
-
-`proto/` contains protocol buffer definition files.
 
 ## References
 
-* [Acute Official Website](https://www.acute.com.tw/en/)
-
-* [Acute Software Download](https://www.acute.com.tw/en/install)
-
-* [AqVISA docs](https://www.acute.com.tw/en/sdkDLL)
-
-* [gRPC docs](https://grpc.io/docs/)
-
-* [Protocol Buffer](https://protobuf.dev/)
+- [gRPC documentation](https://grpc.io/docs/)
+- [Protocol Buffers documentation](https://protobuf.dev/)
