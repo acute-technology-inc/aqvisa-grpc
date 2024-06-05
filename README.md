@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 AqVISA offers an intuitive interface for seamless management of controlling our software. With
- [gRPC](https://grpc.io/docs/), it makes even easier for developers to manipulate the workflow.
+ [gRPC](https://grpc.io/docs/), it makes even easier for developers to manipulate the automation workflow.
 
 - **Acute official website**: https://www.acute.com.tw/en/
 - **Acute software download**: https://www.acute.com.tw/en/install
