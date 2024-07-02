@@ -4,7 +4,9 @@ In the section, we will simply go through AqVISA flow and introduce all supporte
 
 ## Flow Chart
 
-![Flow Chart](https://github.com/acute-technology-inc/aqvisa-grpc/blob/main/res/flowchart.png?raw=true)
+<p align="center">
+    <img src="https://github.com/acute-technology-inc/aqvisa-grpc/blob/main/res/flowchart.png?raw=true"/>
+</p>
 
 Simply send commands via [ViWrite](#ViWrite) call. The server will generate a response after the command is fully executed. If there is queried value to be returned, you can retrieve the value by using [ViRead](#ViRead) call. Repeat this flow for your automation process. For more details, please read the next section for all defined RPC calls.
 
