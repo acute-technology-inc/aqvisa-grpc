@@ -24,7 +24,28 @@ Send commands to the application with the parameter *command*. Return AQVI_NO_ER
 
 See also [ViWriteRequest](#ViWriteRequest) and [ViWriteResponse](#ViWriteResponse) messages.
 
+### ViWriteFromFile
+
+This RPC is used for send configuration file instead of sending commands to the application. The configuration file is in JSON format. It is loaded and the payload can be transferred over gRPC.
+
+See also [ViWriteFromFileRequest](#ViWriteFromFileRequest) and [ViWriteFromFileResponse](#ViWriteFromFileResponse) messages.
+
 ## Messages
+
+### ViReadRequest
+
+* Parameter
+    
+    - bytes ***jobid*** [deprecated]: NOT IN USE.
+    - int64 ***count***: Represents the size of the data buffer to receive data from the application.
+
+### ViReadResponse
+
+* Parameter
+
+    - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
+    - bytes ***command_response***: Queried response from the previous [ViWrite](#ViWrite) command.
+    - int64 ***ret_count***: Represents the length of the responses
 
 ### ViWriteRequest
 
@@ -39,20 +60,24 @@ See also [ViWriteRequest](#ViWriteRequest) and [ViWriteResponse](#ViWriteRespons
     - bytes ***jobid***: Represents the unique identification of the ViWrite call.
     - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
 
-### ViReadRequest
+### ViWriteFromFileRequest
 
 * Parameter
     
-    - bytes ***jobid*** [deprecated]: NOT IN USE.
-    - int64 ***count***: Represents the size of the data buffer to receive data from the application.
+    - bytes ***payload***: A byte array payload loaded from JSON configuration file.
+    Currently supported schema is as follows
 
-### ViReadResponse
+
+        | Schema Name | Schema |
+        | ----------- | -----  |
+        | Electrical Validation | TBD |
+
+### ViWriteFromFileResponse
 
 * Parameter
-
+    
+    - bytes ***jobid***: Represents the unique identification of the [ViWriteFromFile](#ViWriteFromFile) call.
     - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
-    - bytes ***command_response***: Queried response from the previous ViWrite command.
-    - int64 ***ret_count***: Represents the length of the responses
 
 ## Status Code
 
