@@ -8,7 +8,7 @@ AqVISA offers an intuitive interface for seamless management of controlling our 
 - **Acute official website**: https://www.acute.com.tw/en/
 - **Acute software download**: https://www.acute.com.tw/en/install
 - **AqVISA download**: https://www.acute.com.tw/en/sdkDLL
-- **AqVISA RPC documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
+- **AqVISA documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
 - **Bug reports**: https://github.com/acute-technology-inc/aqvisa-grpc/issues
 
 ## Contents
@@ -32,13 +32,14 @@ Products that support [gRPC](https://grpc.io/docs/) remote control
 | Protocol Analyzer            | Acute BusFinder 7000 series                                                                                | 
 
 
-## Platforms
+## Minimium Requirements
 
-Each product with its corresponding supported software version and platform is listed below. 
+Each product with its corresponding supported software version and platform is listed below. However, some features will require the application
+with a newer version. Please check the **Releases** page for details for each version.
 
 ### Windows
 
-| Software (x64)                | Version         | Download Link                               |
+| Software (x64)                | Minimum Version | Download Link                               |
 | ----------------------------- | --------------- | ------------------------------------------- |
 | MSO                           | 1.8.10 or above | [Link](https://www.acute.com.tw/en/install) |
 | MSO (Full)                    | 1.8.10 or above | [Link](https://www.acute.com.tw/en/install) |
@@ -50,7 +51,7 @@ Each product with its corresponding supported software version and platform is l
 
 **_NOTE:_** The software on Linux platform are still marked as beta versions. Please create an issue if you encounter any errors when running the program.
 
-| Software (x86_64)             | Version         | Download Link                                                        |
+| Software (x86_64)             | Minimum Version | Download Link                                                        |
 | ----------------------------- | --------------- | -------------------------------------------------------------------- |
 | Mixed_Signal_Oscilloscope     | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/mso-release/releases) |
 | Digital_Storage_Oscilloscope  | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/dso-release/releases) |
