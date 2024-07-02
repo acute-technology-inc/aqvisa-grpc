@@ -7,7 +7,8 @@ AqVISA offers an intuitive interface for seamless management of controlling our 
 
 - **Acute official website**: https://www.acute.com.tw/en/
 - **Acute software download**: https://www.acute.com.tw/en/install
-- **AqVISA documentation**: https://www.acute.com.tw/en/sdkDLL
+- **AqVISA download**: https://www.acute.com.tw/en/sdkDLL
+- **AqVISA RPC documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
 - **Bug reports**: https://github.com/acute-technology-inc/aqvisa-grpc/issues
 
 ## Contents
@@ -56,7 +57,6 @@ Each product with its corresponding supported software version and platform is l
 | BusFinder_Logic_Analyzer      | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/bfa-release/releases) |
 | TravelLogic_Analyzer          | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tl-release/releases)  |
 | TravelBus_Analyzer            | 2.0.0 or above  | [Link](https://github.com/acute-technology-inc/tba-release/releases) |
-
 
 ## References
 
