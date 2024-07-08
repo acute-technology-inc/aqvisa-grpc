@@ -28,7 +28,7 @@ For more information about protobuf, please visit [Protocol Buffers](https://pro
 
 
 
-Before excuting `client.py`, please replace the `address` variable with your own ip and port. You can obtain those values from the DSO / LA software. 
+Before excuting `client.py`, please replace the `address` variable with your own ip and port. You can obtain those values from the DSO / LA application. 
 
 ```
 python client.py

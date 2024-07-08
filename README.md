@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AqVISA offers an intuitive interface for seamless management of controlling our software. With
+AqVISA offers an intuitive interface for seamless management of controlling our applications. With
  [gRPC](https://grpc.io/docs/), it makes even easier for developers to manipulate the automation workflow.
 
 - **Acute official website**: https://www.acute.com.tw/en/
@@ -49,7 +49,7 @@ with a newer version. Please check the **Releases** page for details for each ve
 
 ### Linux
 
-**_NOTE:_** The software on Linux platform are still marked as beta versions. Please create an issue if you encounter any errors when running the program.
+**_NOTE:_** The application on Linux platform are still marked as beta versions. Please create an issue if you encounter any errors when running the program.
 
 | Software (x86_64)             | Minimum Version | Download Link                                                        |
 | ----------------------------- | --------------- | -------------------------------------------------------------------- |
