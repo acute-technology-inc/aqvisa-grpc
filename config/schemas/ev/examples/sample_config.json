@@ -1,0 +1,47 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "I2C",
+  "decode": {
+    "addressMode": "10-bit",
+    "enableClockStretching": true
+  },
+  "channel": [
+    {
+      "label": "SCL",
+      "source": 3,
+      "probe": "x10"
+    },
+    {
+      "label": "SDA",
+      "source": 2,
+      "probe": "direct-in"
+    }
+  ],
+  "validation": {
+    "advance": {
+      "clockCount": 500
+    },
+    "general": {
+      "workingVoltage": 5000000,
+      "speedMode": "Standard Mode"
+    },   
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_SCL",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [        
+        {
+          "name": "t_HD_STA",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ]
+    }
+  }
+}

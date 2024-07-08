@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://common/advance.json",
+  "type": "object",
+  "properties": {
+    "clockCount": {
+      "type": "integer",
+      "default": 500,
+      "minimum": 50,
+      "maximum": 8000
+    }
+  },
+  "required": [ "clockCount" ],
+  "additionalProperties": false
+}

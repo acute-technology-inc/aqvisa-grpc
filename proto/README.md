@@ -26,9 +26,11 @@ See also [ViWriteRequest](#ViWriteRequest) and [ViWriteResponse](#ViWriteRespons
 
 ### ViWriteFromFile
 
-This RPC is used for send configuration file instead of sending commands to the application. The configuration file is in JSON format. It is loaded and the payload can be transferred over gRPC.
+This RPC is used for send configuration file instead of sending commands to the application. The configuration file is in *JSON* format. It is loaded and the payload can be transferred over gRPC.
 
 See also [ViWriteFromFileRequest](#ViWriteFromFileRequest) and [ViWriteFromFileResponse](#ViWriteFromFileResponse) messages.
+
+For the *JSON* config, please see [**schema**](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/config/schemas) for more details.
 
 ## Messages
 

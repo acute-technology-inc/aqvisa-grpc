@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i2c/validation.json",
+  "type": "object",
+  "properties": {
+    "advance": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "workingVoltage": {
+          "type": "number",
+          "default": 3300000
+        },
+        "speedMode": {
+          "type": "string",
+          "enum": [
+            "Standard Mode",
+            "Fast Mode",
+            "Fast Mode Plus",
+            "High Speed Mode"
+          ],
+          "default": "Standard Mode"
+        }
+      },
+      "additionalProperties": false
+    },
+    "specification": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [ "f_SCL" ]
+              },
+              "enable": {
+                "type": "boolean"
+              },
+              "minimum": {
+                "type": "number"
+              },
+              "maximum": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        }, 
+        "time": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [ 
+                  "t_HD_STA",
+                  "t_SU_STA",
+                  "t_HD_DAT",
+                  "t_SU_DAT",
+                  "t_SU_STO",
+                  "t_LOW",
+                  "t_HIGH",
+                  "t_rCL",
+                  "t_rDA",
+                  "t_BUF",
+                  "t_VD_DAT",
+                  "t_VD_ACK",
+                  "t_CLK_Stretch"
+                ]
+              },
+              "enable": {
+                "type": "boolean"
+              },
+              "minimum": {
+                "type": "number"
+              },
+              "maximum": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "voltage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [ "V_Low", "V_High" ]
+              },
+              "enable": {
+                "type": "boolean"
+              },
+              "minimum": {
+                "type": "number"
+              },
+              "maximum": {
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

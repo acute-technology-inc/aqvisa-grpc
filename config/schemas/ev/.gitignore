@@ -1,0 +1,4 @@
+*.zip
+testConfig/
+test.py
+requirements.txt

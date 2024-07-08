@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i2c/decode.json",
+  "type": "object",
+  "properties": {
+    "addressMode": {
+      "default": "7-bit",
+      "enum": [ 
+        "7-bit",
+        "8-bit",
+        "10-bit"
+      ]
+    },
+    "enableClockStretching": {
+      "default": false,
+      "type": "boolean"
+    }
+  },
+  "additionalProperties": false
+}
+
+  

@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://ev.schema.v1.json",
+  "type": "object",
+  "properties": {
+    "importSchema": {
+      "enum": [ "Electrical Validation" ]
+    },
+    "protocol": {
+      "enum": [
+        "I2C"
+      ]
+    }
+  },
+  "required": [
+    "importSchema",
+    "protocol"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "protocol": { 
+            "const": "I2C"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://i2c/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://i2c/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://i2c/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://i2c/channel.json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}
