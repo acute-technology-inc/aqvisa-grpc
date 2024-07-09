@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "file://common/advance.json",
+  "title": "Electrical Validation advanced settings",
   "type": "object",
   "properties": {
     "clockCount": {

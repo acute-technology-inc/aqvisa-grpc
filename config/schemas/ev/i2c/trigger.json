@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "file://i2c/trigger.json",
+  "title": "I2C trigger configuration",
   "additionalProperties": false
 }
   

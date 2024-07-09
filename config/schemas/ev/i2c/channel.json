@@ -1,20 +1,25 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "file://i2c/channel.json",
+  "title": "I2C channel configuration",
+  "description": "Set up channel source configuration of I2C bus.",
   "type": "object",
   "properties": {
     "label": {
+      "description": "Name of wires.",
       "enum": [
         "SCL",
         "SDA"
       ]
     },
     "source": {
+      "description": "Index of source channel.",
       "type": "number",
       "minimum": 1,
       "maximum": 16
     },
     "probe": {
+      "description": "Probe attenuation.",
       "enum": [
         "x10",
         "direct-in"

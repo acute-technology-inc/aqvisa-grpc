@@ -2,8 +2,8 @@
   "importSchema": "Electrical Validation",
   "protocol": "I2C",
   "decode": {
-    "addressMode": "10-bit",
-    "enableClockStretching": true
+    "addressMode": "7-bit",
+    "enableClockStretching": false
   },
   "channel": [
     {
