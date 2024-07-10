@@ -1,17 +1,17 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file://i2c/validation.json",
-  "title": "I2C validation specification configuration",
+  "$id": "file://spi_3wire/validation.json",
+  "title": "3-wire SPI validation specification configuration",
   "examples": [
     {
       "general": {
-        "workingVoltage": 3300,
-        "speedMode": "Standard Mode"
+        "workingVoltage": 5000,
+        "clockSpeed": 12000000
       },
       "specification": {
         "frequency": [
           {
-            "name": "f_SCL",
+            "name": "f_SCLK",
             "enable": true,
             "minimum": 0,
             "maximum": 1000000
@@ -19,7 +19,7 @@
         ],
         "time": [
           {
-            "name": "t_HD_STA",
+            "name": "t_SU_SDA",
             "enable": false,
             "minimum": 0,
             "maximum": 1000
@@ -37,20 +37,18 @@
       "type": "object",
       "properties": {
         "workingVoltage": {
-          "description": "Working voltage of the I2C bus. Unit: mV",
+          "description": "Working voltage of the 3-wire SPI bus. Unit: mV",
           "type": "number",
-          "default": 3300
+          "default": 3300,
+          "minimum": 500,
+          "maximum": 24000
         },
-        "speedMode": {
-          "description": "Speed modes of the I2C bus.",
-          "type": "string",
-          "enum": [
-            "Standard Mode",
-            "Fast Mode",
-            "Fast Mode Plus",
-            "High Speed Mode"
-          ],
-          "default": "Standard Mode"
+        "clockSpeed": {
+          "description": "SPI SCLK speed. Unit: Hz",
+          "type": "integer",
+          "default": 10000000,
+          "minimum": 1000,
+          "maximum": 50000000
         }
       },
       "additionalProperties": false
@@ -66,7 +64,7 @@
               "name": {
                 "description": "Label name of the frequency specification.",
                 "type": "string",
-                "enum": [ "f_SCL" ]
+                "enum": [ "f_SCLK" ]
               },
               "enable": {
                 "type": "boolean"
@@ -92,19 +90,18 @@
                 "description": "Label name of the timing specification",
                 "type": "string",
                 "enum": [
-                  "t_HD_STA",
-                  "t_SU_STA",
-                  "t_HD_DAT",
-                  "t_SU_DAT",
-                  "t_SU_STO",
-                  "t_LOW",
+                  "t_SU_SDA",
+                  "t_HD_SDA",
+                  "t_DIO",
+                  "t_D",
                   "t_HIGH",
-                  "t_rCL",
-                  "t_rDA",
-                  "t_BUF",
-                  "t_VD_DAT",
-                  "t_VD_ACK",
-                  "t_CLK_Stretch"
+                  "t_LOW",
+                  "t_DUTY",
+                  "t_SU_CS",
+                  "t_HD_CS",
+                  "t_CS",
+                  "t_CLKr",
+                  "t_CLKf"
                 ]
               },
               "enable": {

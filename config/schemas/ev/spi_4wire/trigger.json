@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://spi_4wire/trigger.json",
+  "title": "4-wire SPI trigger configuration",
+  "examples": [
+    {
+      "dataPin": "SDI",
+      "fixedOffset": {
+        "enable": false
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "dataPin": {
+      "default": "SDI",
+      "enum": [
+        "SDI",
+        "SDO",
+        "Dual Data"
+      ]
+    },
+    "fixedOffset": {
+      "object": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "default": false
+        },
+        "value": {
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 4095
+        }
+      },
+      "required": [ "enable" ],
+      "additionalProperties": false
+    },
+    "data1": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data2": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data3": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data4": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data5": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data6": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data7": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    },
+    "data8": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "[0-9A-FX]+h"
+    }
+  },
+  "additionalProperties": false
+}

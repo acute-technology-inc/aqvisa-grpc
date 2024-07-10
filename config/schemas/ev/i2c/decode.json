@@ -2,6 +2,12 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "file://i2c/decode.json",
   "title": "I2C decode configuration",
+  "examples": [
+    {
+      "addressMode": "7-bit",
+      "enableClockStretching": false
+    }
+  ],
   "type": "object",
   "properties": {
     "addressMode": {

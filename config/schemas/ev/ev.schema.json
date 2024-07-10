@@ -1,14 +1,20 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "file://ev.schema.v1.json",
+  "title": "Electrical Validation Schema",
+  "description": "This is a schema for importing Electrical Validation Settings by sending payload through gRPC. It expects single protocol settings at a time.",
   "type": "object",
   "properties": {
     "importSchema": {
+      "description": "Name of the schema.",
       "enum": [ "Electrical Validation" ]
     },
     "protocol": {
+      "description": "Name of the protocol.",
       "enum": [
-        "I2C"
+        "I2C",
+        "3-wire SPI",
+        "4-wire SPI"
       ]
     }
   },
@@ -18,9 +24,10 @@
   ],
   "allOf": [
     {
+      "description": "I2C configuration.",
       "if": {
         "properties": {
-          "protocol": { 
+          "protocol": {
             "const": "I2C"
           }
         },
@@ -44,6 +51,72 @@
             "type": "array",
             "items": {
               "$ref": "file://i2c/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "3-wire SPI configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "3-wire SPI"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://spi_3wire/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://spi_3wire/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://spi_3wire/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://spi_3wire/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "4-wire SPI configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "4-wire SPI"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://spi_4wire/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://spi_4wire/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://spi_4wire/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://spi_4wire/channel.json"
             }
           }
         }

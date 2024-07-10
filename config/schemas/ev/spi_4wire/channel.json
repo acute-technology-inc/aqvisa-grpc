@@ -1,22 +1,24 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "file://i2c/channel.json",
-  "title": "I2C channel configuration",
+  "$id": "file://spi_4wire/channel.json",
+  "title": "4-wire SPI channel configuration",
   "examples": [
     {
-      "label": "SCL",
+      "label": "SCLK",
       "source": 1,
       "probe": "x10"
     }
   ],
-  "description": "Set up channel source configuration of I2C bus.",
+  "description": "Set up channel source configuration.",
   "type": "object",
   "properties": {
     "label": {
       "description": "Name of wires.",
       "enum": [
-        "SCL",
-        "SDA"
+        "SCLK",
+        "CS",
+        "SDI",
+        "SDO"
       ]
     },
     "source": {

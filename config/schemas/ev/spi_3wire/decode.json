@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://spi_3wire/decode.json",
+  "title": "3-wire SPI decode configuration",
+  "examples": [
+    {
+      "edgeChipSelect": "active high",
+      "edgeSDA": "rising",
+      "bitOrder": "MSB first",
+      "wordSize": 8
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "edgeChipSelect": {
+      "default": "active low",
+      "enum": [
+        "active high",
+        "active low"
+      ]
+    },
+    "edgeSDA": {
+      "default": "rising",
+      "enum": [
+        "rising",
+        "falling"
+      ]
+    },
+    "bitOrder": {
+      "default": "MSB first",
+      "enum": [
+        "MSB first",
+        "LSB first"
+      ]
+    },
+    "wordSize": {
+      "type": "integer",
+      "default": 8,
+      "minimum": 4,
+      "maximum": 32
+    }
+  },
+  "additionalProperties": false
+}

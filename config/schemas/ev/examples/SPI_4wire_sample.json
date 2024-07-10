@@ -1,0 +1,66 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "4-wire SPI",
+  "decode": {
+    "edgeChipSelect": "active low",
+    "edgeSDI": "rising",
+    "edgeSDO": "rising",
+    "bitOrder": "MSB first",
+    "wordSize": 16
+  },
+  "trigger": {
+    "dataPin": "SDI",
+    "fixedOffset": {
+      "enable": false
+    }
+  },
+  "channel": [
+    {
+      "label": "SCLK",
+      "source": 1,
+      "probe": "x10"
+    },
+    {
+      "label": "CS",
+      "source": 2,
+      "probe": "direct-in"
+    },
+    {
+      "label": "SDI",
+      "source": 3,
+      "probe": "x10"
+    },
+    {
+      "label": "SDO",
+      "source": 2,
+      "probe": "x10"
+    }
+  ],
+  "validation": {
+    "advance": {
+      "clockCount": 500
+    },
+    "general": {
+      "workingVoltage": 5000,
+      "clockSpeed": 12000000
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_SCLK",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [
+        {
+          "name": "t_SU_SDI",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}
