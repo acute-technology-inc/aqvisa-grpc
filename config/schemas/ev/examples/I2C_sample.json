@@ -22,9 +22,9 @@
       "clockCount": 500
     },
     "general": {
-      "workingVoltage": 5000000,
+      "workingVoltage": 3300,
       "speedMode": "Standard Mode"
-    },   
+    },
     "specification": {
       "frequency": [
         {
@@ -34,12 +34,12 @@
           "maximum": 1000000
         }
       ],
-      "time": [        
+      "time": [
         {
           "name": "t_HD_STA",
           "enable": false,
           "minimum": 0,
-          "maximum": 1000000
+          "maximum": 1000
         }
       ]
     }

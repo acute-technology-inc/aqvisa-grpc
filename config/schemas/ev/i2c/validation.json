@@ -11,10 +11,12 @@
       "type": "object",
       "properties": {
         "workingVoltage": {
+          "description": "Working voltage of the I2C bus. Unit: mV",
           "type": "number",
-          "default": 3300000
+          "default": 3300
         },
         "speedMode": {
+          "description": "Speed modes of the I2C bus.",
           "type": "string",
           "enum": [
             "Standard Mode",
@@ -36,6 +38,7 @@
             "type": "object",
             "properties": {
               "name": {
+                "description": "Label name of the frequency specification.",
                 "type": "string",
                 "enum": [ "f_SCL" ]
               },
@@ -43,23 +46,26 @@
                 "type": "boolean"
               },
               "minimum": {
+                "description": "Minimum requirements for the frequency specification. Units: Hz",
                 "type": "number"
               },
               "maximum": {
+                "description": "Maximum limit for the frequency specification. Units: Hz",
                 "type": "number"
               }
             },
             "additionalProperties": false
           }
-        }, 
+        },
         "time": {
           "type": "array",
           "items": {
             "type": "object",
             "properties": {
               "name": {
+                "description": "Label name of the timing specification",
                 "type": "string",
-                "enum": [ 
+                "enum": [
                   "t_HD_STA",
                   "t_SU_STA",
                   "t_HD_DAT",
@@ -79,9 +85,11 @@
                 "type": "boolean"
               },
               "minimum": {
+                "description": "Minimum requirements for the timing specification. Unit: ns",
                 "type": "number"
               },
               "maximum": {
+                "description": "Maximum limit for the timing specification. Unit: ns",
                 "type": "number"
               }
             },
@@ -94,6 +102,7 @@
             "type": "object",
             "properties": {
               "name": {
+                "description": "Label name of the voltage specification",
                 "type": "string",
                 "enum": [ "V_Low", "V_High" ]
               },
@@ -101,9 +110,11 @@
                 "type": "boolean"
               },
               "minimum": {
+                "description": "Minimum requirements for the voltage specification. Unit: mV",
                 "type": "number"
               },
               "maximum": {
+                "description": "Maximum limit for the voltage specification. Unit: mV",
                 "type": "number"
               }
             },

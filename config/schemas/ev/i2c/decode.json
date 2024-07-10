@@ -6,7 +6,7 @@
   "properties": {
     "addressMode": {
       "default": "7-bit",
-      "enum": [ 
+      "enum": [
         "7-bit",
         "8-bit",
         "10-bit"
@@ -19,5 +19,3 @@
   },
   "additionalProperties": false
 }
-
-  
