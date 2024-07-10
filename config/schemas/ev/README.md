@@ -9,7 +9,8 @@ This is the JSON schema used by Electical Validation, which follows json schema 
 ├── common
 │   └── advance.json
 ├── examples
-│   └── sample_config.json
+│   └── I2C_sample.json
+│   ...
 └── i2c
 │   ├── channel.json
 │   ├── decode.json
