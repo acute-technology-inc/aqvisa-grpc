@@ -21,7 +21,7 @@ This is the JSON schema used by Electical Validation, which follows json schema 
 └── ev.schema.json
 ```
 
-This main schema is the `ev.schema.json` file. It includes the subschemas from `common` and all directory named after the protocol name.
+This main schema is the `ev.schema.json` file. It includes the subschemas from `common` and all directories named after the protocol name.
 
 For example, the configuration regarding `I2C` is in the [`i2c/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/config/schemas/ev/i2c) directory.
 
