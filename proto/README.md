@@ -37,7 +37,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 ### ViReadRequest
 
 * Parameter
-    
+
     - bytes ***jobid*** [deprecated]: NOT IN USE.
     - int64 ***count***: Represents the size of the data buffer to receive data from the application.
 
@@ -52,20 +52,20 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 ### ViWriteRequest
 
 * Parameter
-    
+
     - bytes ***command***: A byte array command that is ready to be sent to the application.
 
 ### ViWriteResponse
 
 * Parameter
-    
+
     - bytes ***jobid***: Represents the unique identification of the ViWrite call.
     - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
 
 ### ViWriteFromFileRequest
 
 * Parameter
-    
+
     - bytes ***payload***: A byte array payload loaded from JSON configuration file.
     Currently supported schema is as follows
 
@@ -77,7 +77,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 ### ViWriteFromFileResponse
 
 * Parameter
-    
+
     - bytes ***jobid***: Represents the unique identification of the [ViWriteFromFile](#ViWriteFromFile) call.
     - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
 

@@ -12,11 +12,11 @@ This is the JSON schema used by Electical Validation, which follows json schema 
 │   └── sample_config.json
 └── i2c
 │   ├── channel.json
-│   ├── channel.json
-│   ├── channel.json
-│   └── channel.json
+│   ├── decode.json
+│   ├── trigger.json
+│   └── validation.json
 └── i2s
-...     
+...
 └── ev.schema.json
 ```
 

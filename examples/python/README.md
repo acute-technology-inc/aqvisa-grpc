@@ -1,6 +1,6 @@
-# Sample Client in Python 
+# Sample Client in Python
 
-This directory contains an example implementation for client in Python. 
+This directory contains an example implementation for client in Python.
 
 ## Requirements
 
@@ -12,13 +12,13 @@ pip install -r requirements.txt
 
 Please find `aqvisa.proto` in the `proto/` directory.
 
-Execute the following command to compile 
+Execute the following command to compile
 
 ```
-python -m grpc_tools.protoc -Iproto 
-                            --python_out=. 
-                            --pyi_out=. 
-                            --grpc_python_out=. 
+python -m grpc_tools.protoc -Iproto
+                            --python_out=.
+                            --pyi_out=.
+                            --grpc_python_out=.
                             proto/aqvisa.proto
 ``````
 
@@ -28,7 +28,7 @@ For more information about protobuf, please visit [Protocol Buffers](https://pro
 
 
 
-Before excuting `client.py`, please replace the `address` variable with your own ip and port. You can obtain those values from the DSO / LA application. 
+Before excuting `client.py`, please replace the `address` variable with your own ip and port. You can obtain those values from the DSO / LA application.
 
 ```
 python client.py

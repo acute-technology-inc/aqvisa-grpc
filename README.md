@@ -13,10 +13,10 @@ AqVISA offers an intuitive interface for seamless management of controlling our 
 
 ## Contents
 
-[`examples/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/examples/python) 
+[`examples/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/examples/python)
 contains sample client-side controlling flow code.
 
-[`proto/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto) 
+[`proto/`](https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto)
 contains protocol buffer definition files.
 
 
@@ -24,12 +24,12 @@ contains protocol buffer definition files.
 
 Products that support [gRPC](https://grpc.io/docs/) remote control
 
-| Types                        | Product                                                                                                    | 
+| Types                        | Product                                                                                                    |
 | ---------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | Mixed Signal Oscilloscope    | Acute MSO3000 series<br>Acute MSO2000 series<br>Acute MSO1000 series                                       |
 | Digital Storage Oscilloscope | Acute TravelScope3000 series                                                                               |
 | Logic Analyzer               | Acute TravelBus 3000 series<br>Acute TravelBus 2000 series<br>Acute TravelBus 1000 series<br>Acute TravelLogic 4000 series<br>Acute TravelLogic 3000 series<br>Acute LA4000 series<br>Acute LA3000 series |
-| Protocol Analyzer            | Acute BusFinder 7000 series                                                                                | 
+| Protocol Analyzer            | Acute BusFinder 7000 series                                                                                |
 
 
 ## Minimium Requirements
