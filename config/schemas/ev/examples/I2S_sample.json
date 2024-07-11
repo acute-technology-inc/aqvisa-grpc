@@ -1,0 +1,56 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "I2S",
+  "decode": {
+    "bitOrder": "MSB first",
+    "dataBits": 8
+  },
+  "channel": [
+    {
+      "label": "SCK",
+      "source": 1,
+      "probe": "x10"
+    },
+    {
+      "label": "WS",
+      "source": 2,
+      "probe": "direct-in"
+    }
+  ],
+  "trigger": {
+    "method": "Data Match",
+    "duration": 1,
+    "pattern": {
+      "compareMethod": "Equal",
+      "value": "00h"
+    }
+  },
+  "validation": {
+    "advance": {
+      "clockCount": 500
+    },
+    "general": {
+      "mode": "I2S",
+      "workingVoltage": 3300,
+      "dataRate": 2500000
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_SCK",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [
+        {
+          "name": "t_HC",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}

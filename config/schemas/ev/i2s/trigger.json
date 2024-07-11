@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i2s/trigger.json",
+  "title": "I2S trigger configuration",
+  "examples": [
+    {
+      "method": "Data Match",
+      "duration": 1,
+      "pattern": {
+        "compareMethod": "Equal",
+        "value": "00h"
+      }
+    }
+  ],
+  "properties": {
+    "method": {
+      "default": "Data Match",
+      "enum": [
+        "Data Match",
+        "Rising",
+        "Falling",
+        "Glitch",
+        "Mute",
+        "Clip"
+      ]
+    },
+    "channel": {
+      "default": "Both",
+      "enum": [
+        "Both",
+        "Left",
+        "Right"
+      ]
+    },
+    "pattern": {
+      "type": "object",
+      "properties": {
+        "compareMethod": {
+          "default": "Equal",
+          "enum": [
+            "Equal",
+            "Not equal",
+            "Greater than",
+            "Less than",
+            "In range",
+            "Out range"
+          ]
+        }
+      },
+      "if": {
+        "properties": {
+          "compareMethod": { 
+            "enum": [ 
+              "Equal",
+              "Not equal",
+              "Greater than",
+              "Less than"
+            ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "value": {
+            "type": "string",
+            "default": "0000h",
+            "pattern": "[0-9A-FX]+h"
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "lowerValue": {
+            "type": "string",
+            "default": "0000h",
+            "pattern": "[0-9A-FX]+h"
+          },
+          "upperValue": {
+            "type": "string",
+            "default": "0000h",
+            "pattern": "[0-9A-FX]+h"
+          }
+        }
+      },
+      "unevaluatedProperties": false
+    }
+  },
+  "if": {
+    "properties": {
+      "method": {
+        "enum": [
+          "Data Match",
+          "Mute",
+          "Clip"
+        ]
+      }
+    }
+  },
+  "then": {
+    "properties": {
+      "duration": {
+        "default": 1,
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 65536
+      }
+    }
+  },
+  "required": [ "method" ],
+  "unevaluatedProperties": false
+}

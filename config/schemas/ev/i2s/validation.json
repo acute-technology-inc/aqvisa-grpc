@@ -1,0 +1,158 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i2s/validation.json",
+  "title": "I2S validation specification configuration",
+  "examples": [
+    {
+      "general": {
+        "mode": "I2S",
+        "workingVoltage": 3300,
+        "dataRate": 2500000
+      },
+      "specification": {
+        "frequency": [
+          {
+            "name": "f_SCK",
+            "enable": true,
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        ],
+        "time": [
+          {
+            "name": "t_HC",
+            "enable": false,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "advance": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "default": "I2S",
+          "enum": [
+            "I2S",
+            "Left Justified",
+            "PCM",
+            "TDM"
+          ]
+        },
+        "workingVoltage": {
+          "description": "Working voltage of the I2S bus. Unit: mV",
+          "type": "number",
+          "default": 3300
+        },
+        "dataRate": {
+          "description": "Data Rate of the I2S bus. Unit: Hz",
+          "type": "number",
+          "default": 2500000
+        }
+      },
+      "additionalProperties": false
+    },
+    "specification": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the frequency specification.",
+                "type": "string",
+                "enum": [ "f_SCK" ]
+              },
+              "enable": {
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the frequency specification. Units: Hz",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the frequency specification. Units: Hz",
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "time": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the timing specification",
+                "type": "string",
+                "enum": [
+                  "t_HC",
+                  "t_LC",
+                  "t_R",
+                  "t_F",
+                  "t_d_SCKWS",
+                  "t_d_SCKSD",
+                  "t_duty_SCK",
+                  "t_s_WS",
+                  "t_h_WS",
+                  "t_duty_WS",
+                  "t_s_SD",
+                  "t_h_SD"
+                ]
+              },
+              "enable": {
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the timing specification. Unit: ns",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the timing specification. Unit: ns",
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "voltage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the voltage specification",
+                "type": "string",
+                "enum": [ "V_Low", "V_High" ]
+              },
+              "enable": {
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the voltage specification. Unit: mV",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the voltage specification. Unit: mV",
+                "type": "number"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

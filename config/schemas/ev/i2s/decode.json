@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i2s/decode.json",
+  "title": "I2S decode configuration",
+  "examples": [
+    {
+      "bitOrder": "MSB first",
+      "dataBits": 8
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "bitOrder": {
+      "default": "MSB first",
+      "enum": [
+        "MSB first",
+        "LSB first"
+      ]
+    },
+    "dataBits": {
+      "default": 16,
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 32
+    }
+  },
+  "additionalProperties": false
+}

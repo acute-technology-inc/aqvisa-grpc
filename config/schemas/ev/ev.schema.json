@@ -13,6 +13,7 @@
       "description": "Name of the protocol.",
       "enum": [
         "I2C",
+        "I2S",
         "3-wire SPI",
         "4-wire SPI"
       ]
@@ -51,6 +52,39 @@
             "type": "array",
             "items": {
               "$ref": "file://i2c/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "I2S configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "I2S"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://i2s/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://i2s/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://i2s/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://i2s/channel.json"
             }
           }
         }

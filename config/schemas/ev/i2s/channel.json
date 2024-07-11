@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i2s/channel.json",
+  "title": "I2S channel configuration",
+  "examples": [
+    {
+      "label": "SCK",
+      "source": 1,
+      "probe": "x10"
+    }
+  ],
+  "description": "Set up channel source configuration of I2S bus.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "description": "Name of wires.",
+      "enum": [
+        "SCK",
+        "WS",
+        "SD"
+      ]
+    },
+    "source": {
+      "description": "Index of source channel.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "probe": {
+      "description": "Probe attenuation.",
+      "enum": [
+        "x10",
+        "direct-in"
+      ],
+      "default": "x10"
+    }
+  },
+  "required": [ "label", "source", "probe" ],
+  "additionalProperties": false
+}
