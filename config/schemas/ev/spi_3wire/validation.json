@@ -78,6 +78,7 @@
                 "type": "number"
               }
             },
+            "required": [ "name" ],
             "additionalProperties": false
           }
         },
@@ -116,6 +117,7 @@
                 "type": "number"
               }
             },
+            "required": [ "name" ],
             "additionalProperties": false
           }
         },
@@ -141,6 +143,7 @@
                 "type": "number"
               }
             },
+            "required": [ "name" ],
             "additionalProperties": false
           }
         }
