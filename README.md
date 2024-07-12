@@ -7,8 +7,8 @@ AqVISA offers an intuitive interface for seamless management of controlling our 
 
 - **Acute official website**: https://www.acute.com.tw/en/
 - **Acute software download**: https://www.acute.com.tw/en/install
-- **AqVISA download**: https://www.acute.com.tw/en/sdkDLL
-- **AqVISA documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
+- **AqVISA SDK download**: https://www.acute.com.tw/en/sdkDLL
+- **AqVISA with gRPC documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
 - **Bug reports**: https://github.com/acute-technology-inc/aqvisa-grpc/issues
 
 ## Contents
@@ -63,3 +63,4 @@ with a newer version. Please check the **Releases** page for details for each ve
 
 - [gRPC documentation](https://grpc.io/docs/)
 - [Protocol Buffers documentation](https://protobuf.dev/)
+- [JSON schema](https://json-schema.org/draft/2020-12/release-notes)
