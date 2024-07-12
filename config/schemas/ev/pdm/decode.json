@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://pdm/decode.json",
+  "title": "PDM decode configuration",
+  "examples": [
+    {
+      "mode": "Stereo",
+      "audioSettings": {
+        "decimationRate": "x64"
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "mode": {
+      "default": "Stereo",
+      "enum": [
+        "Latch On Rise Only",
+        "Latch On Fall Only",
+        "Stereo"
+      ]
+    },
+    "audioSettings": {
+      "type": "object",
+      "oneOf": [
+        {
+          "description": "PDM decimation rate.",
+          "properties": {
+            "decimationRate": {
+              "default": "x64",
+              "enum": [
+                "x16",
+                "x24",
+                "x32",
+                "x48",
+                "x64",
+                "x96",
+                "x128",
+                "x192",
+                "x256",
+                "x384",
+                "x512",
+                "x1024",
+                "x2048"
+              ]
+            }
+          },
+          "required": [ "decimationRate" ],
+          "not": {
+            "required": [ "frequency" ]
+          }
+        },
+        {
+          "description": "PDM audio frequency.",
+          "properties": {
+            "frequency": {
+              "default": "48",
+              "enum": [
+                "8",
+                "16",
+                "24",
+                "32",
+                "48",
+                "96",
+                "192"
+              ]
+            }
+          },
+          "required": [ "frequency" ],
+          "not": {
+            "required": [ "decimationRate" ]
+          }
+        }
+      ],
+      "unevaluatedProperties": false
+    }
+  },
+  "required": [ "mode" ],
+  "additionalProperties": false
+}

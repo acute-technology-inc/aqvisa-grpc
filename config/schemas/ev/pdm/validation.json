@@ -1,0 +1,171 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://pdm/validation.json",
+  "title": "PDM validation specification configuration",
+  "examples": [
+    {
+      "general": {
+        "workingVoltage": 3300,
+        "clockSpeed": "3072"
+      },
+      "specification": {
+        "frequency": [
+          {
+            "name": "f_SCL",
+            "enable": true,
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        ],
+        "time": [
+          {
+            "name": "t_HD_STA",
+            "enable": false,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "advanced": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "workingVoltage": {
+          "description": "Working voltage of the PDM bus. Unit: mV",
+          "type": "number",
+          "default": 3300
+        },
+        "clockSpeed": {
+          "default": "3072",
+          "description": "Speed modes of the PDM bus. Only specific values can be assigned. Unit: kHz",
+          "enum": [
+            "256",
+            "384",
+            "512",
+            "768",
+            "876",
+            "1024",
+            "1152",
+            "1536",
+            "2048",
+            "2304",
+            "3072",
+            "4096",
+            "4608",
+            "6144",
+            "8192",
+            "9216",
+            "12288",
+            "16384",
+            "18432",
+            "24576"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "specification": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the frequency specification.",
+                "type": "string",
+                "enum": [ "f_CLK" ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the frequency specification. Units: Hz",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the frequency specification. Units: Hz",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        },
+        "time": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the timing specification",
+                "type": "string",
+                "enum": [
+                  "t_LOW",
+                  "t_HIGH",
+                  "t_rCL",
+                  "t_fCL",
+                  "t_rDD",
+                  "t_fDD",
+                  "t_rDV",
+                  "t_fDV"
+                ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the timing specification. Unit: ns",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the timing specification. Unit: ns",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        },
+        "voltage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the voltage specification",
+                "type": "string",
+                "enum": [ "V_Low", "V_High" ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the voltage specification. Unit: mV",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the voltage specification. Unit: mV",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

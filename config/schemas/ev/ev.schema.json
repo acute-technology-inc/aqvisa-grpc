@@ -14,6 +14,7 @@
       "enum": [
         "I2C",
         "I2S",
+        "PDM",
         "3-wire SPI",
         "4-wire SPI"
       ]
@@ -85,6 +86,39 @@
             "type": "array",
             "items": {
               "$ref": "file://i2s/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "PDM configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "PDM"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://pdm/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://pdm/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://pdm/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://pdm/channel.json"
             }
           }
         }

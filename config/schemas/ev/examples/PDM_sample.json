@@ -1,0 +1,49 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "PDM",
+  "decode": {
+    "mode": "Stereo",
+    "audioSettings": {
+      "decimationRate": "x64"
+    }
+  },
+  "channel": [
+    {
+      "label": "CLK",
+      "source": 3,
+      "probe": "x10"
+    },
+    {
+      "label": "DATA",
+      "source": 2,
+      "probe": "direct-in"
+    }
+  ],
+  "validation": {
+    "advanced": {
+      "clockCount": 500
+    },
+    "general": {
+      "workingVoltage": 3300,
+      "clockSpeed": "3072"
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_CLK",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [
+        {
+          "name": "t_LOW",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}
