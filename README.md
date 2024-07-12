@@ -8,7 +8,7 @@ AqVISA offers an intuitive interface for seamless management of controlling our 
 - **Acute official website**: https://www.acute.com.tw/en/
 - **Acute software download**: https://www.acute.com.tw/en/install
 - **AqVISA SDK download**: https://www.acute.com.tw/en/sdkDLL
-- **AqVISA with gRPC documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
+- **Documentation**: https://github.com/acute-technology-inc/aqvisa-grpc/tree/main/proto/README.md
 - **Bug reports**: https://github.com/acute-technology-inc/aqvisa-grpc/issues
 
 ## Contents
@@ -35,7 +35,7 @@ Products that support [gRPC](https://grpc.io/docs/) remote control
 ## Minimium Requirements
 
 Each product with its corresponding supported software version and platform is listed below. However, some features will require the application
-with a newer version. Please check the **Releases** page for details for each version.
+with a newer version. Please check the [Releases](https://github.com/acute-technology-inc/aqvisa-grpc/releases/latest) page for details for each version.
 
 ### Windows
 
