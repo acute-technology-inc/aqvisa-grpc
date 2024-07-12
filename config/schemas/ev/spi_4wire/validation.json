@@ -30,7 +30,7 @@
   ],
   "type": "object",
   "properties": {
-    "advance": {
+    "advanced": {
       "$ref": "file://common/advance.json"
     },
     "general": {
@@ -67,6 +67,7 @@
                 "enum": [ "f_SCLK" ]
               },
               "enable": {
+                "default": false,
                 "type": "boolean"
               },
               "minimum": {
@@ -107,6 +108,7 @@
                 ]
               },
               "enable": {
+                "default": false,
                 "type": "boolean"
               },
               "minimum": {
@@ -133,6 +135,7 @@
                 "enum": [ "V_Low", "V_High" ]
               },
               "enable": {
+                "default": false,
                 "type": "boolean"
               },
               "minimum": {

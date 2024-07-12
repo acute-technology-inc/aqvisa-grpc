@@ -18,7 +18,7 @@
     }
   ],
   "validation": {
-    "advance": {
+    "advanced": {
       "clockCount": 500
     },
     "general": {
