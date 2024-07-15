@@ -1,0 +1,50 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "UART",
+  "decode": {
+    "format": {
+      "baudRate": "9600",
+      "dataBits": 8,
+      "parity": "None",
+      "polarity": "Idle high",
+      "stopBits": "1"
+    },
+    "bitOrder": "MSB first",
+    "invertBits": false,
+    "reportSize": 16
+  },
+  "channel": [
+    {
+      "label": "Data",
+      "source": 1,
+      "probe": "x10"
+    }
+  ],
+  "validation": {
+    "advanced": {
+      "clockCount": 500
+    },
+    "general": {
+      "voltageHigh": 5000,
+      "voltageLow": -5000
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_UART",
+          "enable": true,
+          "minimum": -5,
+          "maximum": 5
+        }
+      ],
+      "time": [
+        {
+          "name": "t_r",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}

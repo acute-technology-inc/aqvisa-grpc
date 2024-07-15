@@ -16,7 +16,8 @@
         "I2S",
         "PDM",
         "3-wire SPI",
-        "4-wire SPI"
+        "4-wire SPI",
+        "UART"
       ]
     }
   },
@@ -185,6 +186,39 @@
             "type": "array",
             "items": {
               "$ref": "file://spi_4wire/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "UART configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "UART"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://uart/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://uart/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://uart/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://uart/channel.json"
             }
           }
         }

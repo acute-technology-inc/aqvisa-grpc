@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://uart/channel.json",
+  "title": "UART channel configuration",
+  "examples": [
+    {
+      "label": "Data",
+      "source": 1,
+      "probe": "x10"
+    }
+  ],
+  "description": "Set up channel source configuration of UART bus.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "description": "Name of wires.",
+      "enum": [
+        "Data"
+      ]
+    },
+    "source": {
+      "description": "Index of source channel.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 16
+    },
+    "probe": {
+      "description": "Probe attenuation.",
+      "enum": [
+        "x10",
+        "direct-in"
+      ],
+      "default": "x10"
+    }
+  },
+  "required": [ "label", "source", "probe" ],
+  "additionalProperties": false
+}

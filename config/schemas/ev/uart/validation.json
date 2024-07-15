@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://uart/validation.json",
+  "title": "UART validation specification configuration",
+  "examples": [
+    {
+      "general": {
+        "voltageHigh": 5000,
+        "voltageLow": -5000
+      },
+      "specification": {
+        "frequency": [
+          {
+            "name": "f_UART",
+            "enable": true,
+            "minimum": -5,
+            "maximum": 5
+          }
+        ],
+        "time": [
+          {
+            "name": "t_r",
+            "enable": false,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "advanced": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "voltageHigh": {
+          "description": "Voltage High (V_High) of the UART bus. Unit: mV",
+          "type": "number",
+          "default": 5000
+        },
+        "voltageLow": {
+          "description": "Voltage High (V_Low) of the UART bus. Unit: mV",
+          "type": "number",
+          "default": -5000
+        }
+      },
+      "additionalProperties": false
+    },
+    "specification": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the baudRate specification.",
+                "type": "string",
+                "enum": [ "f_UART" ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the baudRate specification. Units: per thousand",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the baudRate specification. Units: per thousand",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        },
+        "time": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the timing specification",
+                "type": "string",
+                "enum": [
+                  "t_r",
+                  "t_f",
+                  "t_high",
+                  "t_low"
+                ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the timing specification. Unit: ns",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the timing specification. Unit: ns",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        },
+        "voltage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the voltage specification",
+                "type": "string",
+                "enum": [ "V_Low", "V_High" ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the voltage specification. Unit: mV",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the voltage specification. Unit: mV",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

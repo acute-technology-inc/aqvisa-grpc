@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://uart/decode.json",
+  "title": "UART decode configuration",
+  "examples": [
+    {
+      "format": {
+        "baudRate": "9600",
+        "dataBits": 8,
+        "parity": "None",
+        "polarity": "Idle high",
+        "stopBits": 1
+      },
+      "bitOrder": "MSB first",
+      "invertBits": false,
+      "reportSize": 16
+    },
+    {
+      "$comment": "No format specified implies auto detecting data format",
+      "bitOrder": "MSB first",
+      "invertBits": false,
+      "reportSize": 16
+    }
+    
+  ],
+  "type": "object",
+  "properties": {
+    "format": {
+      "type": "object",
+      "properties": {
+        "baudRate": {
+          "default": "9600",
+          "enum": [
+            "110",
+            "300",
+            "600",
+            "1200",
+            "2400",
+            "4800",
+            "9600",
+            "19200",
+            "38400",
+            "57600",
+            "115200",
+            "230400",
+            "460800",
+            "921600"
+          ]
+        },
+        "dataBits": {
+          "type": "integer",
+          "default": 8,
+          "minimum": 4,
+          "maximum": 16
+        },
+        "parity": {
+          "default": "None",
+          "enum": [
+            "None",
+            "Odd",
+            "Even",
+            "Mark",
+            "Space"
+          ]
+        },
+        "polarity": {
+          "default": "Idle high",
+          "enum": [
+            "Idle high",
+            "Idle low"
+          ]
+        },
+        "stopBits": {
+          "default": "1",
+          "enum": [
+            "1", "1.5", "2", "2.5", "3", "3.5", "4", "4.5"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "bitOrder": {
+      "default": "MSB first",
+      "enum": [
+        "MSB first",
+        "LSB first"
+      ]
+    },
+    "invertBits": {
+      "type": "boolean",
+      "default": false
+    },
+    "reportSize": {
+      "type": "integer",
+      "default": 16,
+      "minimum": 16,
+      "maximum": 32,
+      "multipleOf": 16
+    }
+  },
+  "additionalProperties": false
+}
