@@ -71,8 +71,8 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 
 
         | Schema Name | Schema |
-        | ----------- | -----  |
-        | Electrical Validation | TBD |
+        | ----------- | ------ |
+        | Electrical Validation | [Schema](../config/schemas/ev/ev.schema.json) |
 
 ### ViWriteFromFileResponse
 
