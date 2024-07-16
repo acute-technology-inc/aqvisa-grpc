@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://spmi/validation.json",
+  "title": "MIPI SPMI validation specification configuration",
+  "examples": [
+    {
+      "general": {
+        "workingVoltage": 1800,
+        "deviceType": "High Speed Device"
+      },
+      "specification": {
+        "frequency": [
+          {
+            "name": "f_SCLK",
+            "enable": true,
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        ],
+        "time": [
+          {
+            "name": "t_SCLKOH",
+            "enable": false,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "advanced": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "workingVoltage": {
+          "description": "Working voltage of the MIPI SPMI bus. Unit: mV",
+          "type": "number",
+          "default": 3300,
+          "minimum": 500,
+          "maximum": 24000
+        },
+        "deviceType": {
+          "description": "MIPI SPMI device types with different timing requirements",
+          "enum": [
+            "High Speed Device", "Low Speed Device"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "specification": {
+      "type": "object",
+      "properties": {
+        "frequency": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the frequency specification.",
+                "type": "string",
+                "enum": [ "f_SCLK" ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the frequency specification. Units: Hz",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the frequency specification. Units: Hz",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        },
+        "time": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "enum": [
+                  "t_SCLKOH",
+                  "t_SCLKOL",
+                  "t_SCLKOTR",
+                  "t_SDATAOTR",
+                  "t_D",
+                  "t_S",
+                  "t_H"
+                ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the timing specification. Unit: ns",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the timing specification. Unit: ns",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        },
+        "voltage": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "description": "Label name of the voltage specification",
+                "type": "string",
+                "enum": [ "V_L", "V_H" ]
+              },
+              "enable": {
+                "default": false,
+                "type": "boolean"
+              },
+              "minimum": {
+                "description": "Minimum requirements for the voltage specification. Unit: mV",
+                "type": "number"
+              },
+              "maximum": {
+                "description": "Maximum limit for the voltage specification. Unit: mV",
+                "type": "number"
+              }
+            },
+            "required": [ "name" ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

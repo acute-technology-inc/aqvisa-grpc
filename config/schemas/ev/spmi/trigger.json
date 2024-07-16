@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://spmi/trigger.json",
+  "title": "MIPI SPMI trigger configuration",
+  "examples": [
+    {
+      "command": "Any Command",
+      "slaveAddress": "Xh",
+      "registerAddress": "XXXXh",
+      "data": [
+        {
+          "value": "XXh"
+        }
+      ]
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "command": {
+      "default": "Any Command",
+      "enum": [
+        "Any Command",
+        "Extended Register Write",
+        "Reset",
+        "Sleep",
+        "Shutdown",
+        "Wakeup",
+        "Authentication",
+        "Master Read",
+        "Master Write",
+        "Transfer Bus Ownership",
+        "Device Descriptor Block Master Read",
+        "Device Descriptor Block Slave Read",
+        "Extended Register Read",
+        "Extended Register Write Long",
+        "Extended Register Read Long",
+        "Register Write",
+        "Register Read",
+        "Register 0 Write"
+      ]
+    },
+    "slaveAddress": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "^[0-9A-FX]{1}h"
+    },
+    "registerAddress": {
+      "type": "string",
+      "default": "XXXXh",
+      "pattern": "^[0-9A-FX]{1,4}h"
+    },
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "default": "XXh",
+            "pattern": "^[0-9A-FX]{1,2}h"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 16
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,56 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "MIPI SPMI",
+  "decode": {
+    "version": "2.0"
+  },
+  "trigger": {
+    "command": "Any Command",
+    "slaveAddress": "Xh",
+    "registerAddress": "XXXXh",
+    "data": [
+      {
+        "value": "XXh"
+      }
+    ]
+  },
+  "channel": [
+    {
+      "label": "SCLK",
+      "source": 1,
+      "probe": "x10"
+    },
+    {
+      "label": "SDATA",
+      "source": 2,
+      "probe": "direct-in"
+    }
+  ],
+  "validation": {
+    "advanced": {
+      "clockCount": 500
+    },
+    "general": {
+      "workingVoltage": 1800,
+      "deviceType": "High Speed Device"
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_SCLK",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [
+        {
+          "name": "t_SCLKOH",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}

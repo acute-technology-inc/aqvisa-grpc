@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://spmi/decode.json",
+  "title": "MIPI SPMI decode configuration",
+  "examples": [
+    {
+      "version": "2.0"
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "version": {
+      "description": "Specification version on MIPI SPMI bus",
+      "default": "2.0",
+      "enum": [
+        "1.0",
+        "2.0"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
+
