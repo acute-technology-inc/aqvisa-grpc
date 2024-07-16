@@ -4,7 +4,7 @@
   "title": "MIPI SPMI trigger configuration",
   "examples": [
     {
-      "command": "Any Command",
+      "commandSequence": "Any Command",
       "slaveAddress": "Xh",
       "registerAddress": "XXXXh",
       "data": [
@@ -16,7 +16,7 @@
   ],
   "type": "object",
   "properties": {
-    "command": {
+    "commandSequence": {
       "default": "Any Command",
       "enum": [
         "Any Command",

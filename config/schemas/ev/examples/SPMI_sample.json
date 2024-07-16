@@ -5,7 +5,7 @@
     "version": "2.0"
   },
   "trigger": {
-    "command": "Any Command",
+    "commandSequence": "Any Command",
     "slaveAddress": "Xh",
     "registerAddress": "XXXXh",
     "data": [
