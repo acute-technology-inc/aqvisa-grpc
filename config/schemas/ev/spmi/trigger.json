@@ -41,7 +41,7 @@
     },
     "slaveAddress": {
       "type": "string",
-      "default": "XXh",
+      "default": "Xh",
       "pattern": "^[0-9A-FX]{1}h"
     },
     "registerAddress": {
