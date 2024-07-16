@@ -37,45 +37,21 @@
       "required": [ "enable" ],
       "additionalProperties": false
     },
-    "data1": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data2": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data3": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data4": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data5": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data6": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data7": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
-    },
-    "data8": {
-      "type": "string",
-      "default": "XXh",
-      "pattern": "[0-9A-FX]+h"
+    "data": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string",
+            "default": "XXh",
+            "pattern": "^[0-9A-FX]{1,4}h"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1,
+      "maxItems": 8
     }
   },
   "additionalProperties": false
