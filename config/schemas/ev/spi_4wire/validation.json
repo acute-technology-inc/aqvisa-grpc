@@ -89,6 +89,7 @@
             "type": "object",
             "properties": {
               "name": {
+                "description": "Label name of the timing specification.",
                 "type": "string",
                 "enum": [
                   "t_SU_SDI",
