@@ -64,7 +64,7 @@
           "value": {
             "type": "string",
             "default": "0000h",
-            "pattern": "[0-9A-FX]+h"
+            "pattern": "^[0-9A-FX]{1,8}h"
           }
         }
       },
@@ -73,12 +73,12 @@
           "lowerValue": {
             "type": "string",
             "default": "0000h",
-            "pattern": "[0-9A-FX]+h"
+            "pattern": "^[0-9A-FX]{1,8}h"
           },
           "upperValue": {
             "type": "string",
             "default": "0000h",
-            "pattern": "[0-9A-FX]+h"
+            "pattern": "^[0-9A-FX]{1,8}h"
           }
         }
       },
