@@ -1,0 +1,62 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "MIPI RFFE",
+  "trigger": {
+    "commandSequence": "Any Command",
+    "slaveAddress": "Xh",
+    "registerLowerAddress": "XXh",
+    "registerUpperAddress": "XXh",
+    "data": [
+      {
+        "value": "X1h"
+      },
+      {
+        "value": "X2h"
+      },
+      {
+        "value": "X3h"
+      }
+    ]
+  },
+  "channel": [
+    {
+      "label": "SCLK",
+      "source": 1,
+      "probe": "x10"
+    },
+    {
+      "label": "SDATA",
+      "source": 2,
+      "probe": "direct-in"
+    }
+  ],
+  "validation": {
+    "advanced": {
+      "clockCount": 500
+    },
+    "general": {
+      "workingVoltage": 1800,
+      "frequencyRange": "Standard Frequency Range",
+      "testPoint": "BOM",
+      "readOperation": "Read"
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_SCLK",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [
+        {
+          "name": "t_SCLKOH",
+          "enable": false,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}

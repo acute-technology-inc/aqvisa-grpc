@@ -1,0 +1,296 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://rffe/trigger.json",
+  "title": "MIPI RFFE trigger configuration",
+  "examples": [
+    {
+      "commandSequence": "Any Command",
+      "fixedOffset": {
+        "enable": false
+      }
+    },
+    {
+      "commandSequence": "Master Ownership Handover",
+      "registerLowerAddress": "XXh",
+      "fixedOffset": {
+        "enable": false
+      }
+    },
+    {
+      "commandSequence": "Extended Register Read",
+      "slaveAddress": "Xh",
+      "registerLowerAddress": "XXh",
+      "data": [
+        {
+          "value": "XXh"
+        }
+      ]
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "commandSequence": {
+      "default": "Any Command",
+      "enum": [
+        "Any Command",
+        "Extended Register Write",
+        "Masked Write",
+        "Masked Context Transfer Read",
+        "Masked Context Transfer Write",
+        "Master Read",
+        "Master Write",
+        "Master Ownership Handover",
+        "Extended Register Read",
+        "Interrupt Summary and Identification",
+        "Extended Register Write Long",
+        "Extended Register Read Long",
+        "Register Write",
+        "Register Read",
+        "Register 0 Write"
+      ]
+    },
+    "fixedOffset": {
+      "object": "object",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "default": false
+        },
+        "value": {
+          "type": "integer",
+          "default": 0,
+          "minimum": 0,
+          "maximum": 255
+        }
+      },
+      "required": [ "enable" ],
+      "additionalProperties": false
+    }
+  },
+  "anyOf": [
+    {
+      "properties": {
+        "commandSequence": { "const": "Any Command" }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Extended Register Write",
+              "Masked Context Transfer Read",
+              "Masked Context Transfer Write",
+              "Extended Register Read"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "slaveAddress": {
+            "$ref": "#/$defs/slaveAddressFormat"
+          },
+          "registerLowerAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/dataFormat"
+            },
+            "minItems": 1,
+            "maxItems": 8
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Masked Write",
+              "Register Write",
+              "Register Read"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "slaveAddress": {
+            "$ref": "#/$defs/slaveAddressFormat"
+          },
+          "registerLowerAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/dataFormat"
+            },
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Master Read",
+              "Master Write"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "slaveAddress": {
+            "$ref": "#/$defs/slaveAddressFormat"
+          },
+          "registerLowerAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/dataFormat"
+            },
+            "minItems": 1,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Master Ownership Handover"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "registerLowerAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Interrupt Summary and Identification"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "registerLowerAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Extended Register Write Long",
+              "Extended Register Read Long"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "slaveAddress": {
+            "$ref": "#/$defs/slaveAddressFormat"
+          },
+          "registerLowerAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          },
+          "registerUpperAddress": {
+            "$ref": "#/$defs/registerAddressFormat"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/dataFormat"
+            },
+            "minItems": 1,
+            "maxItems": 8
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "commandSequence": {
+            "enum": [
+              "Register 0 Write"
+            ]
+          }
+        },
+        "required": [ "commandSequence" ]
+      },
+      "then": {
+        "properties": {
+          "slaveAddress": {
+            "$ref": "#/$defs/slaveAddressFormat"
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/$defs/dataFormat"
+            },
+            "minItems": 1,
+            "maxItems": 1
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "slaveAddressFormat": {
+      "type": "string",
+      "default": "Xh",
+      "pattern": "^[0-9A-FX]{1}h"
+    },
+    "registerAddressFormat": {
+      "type": "string",
+      "default": "XXh",
+      "pattern": "^[0-9A-FX]{1,2}h"
+    },
+    "dataFormat": {
+      "type": "object",
+      "properties": {
+        "value": {
+          "type": "string",
+          "default": "XXh",
+          "pattern": "^[0-9A-FX]{1,2}h"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "unevaluatedProperties": false
+}

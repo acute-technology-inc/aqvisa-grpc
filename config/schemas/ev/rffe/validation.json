@@ -1,0 +1,746 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://rffe/validation.json",
+  "title": "MIPI RFFE validation specification configuration",
+  "examples": [
+    {
+      "general": {
+        "workingVoltage": 1800,
+        "frequencyRange": "Standard Frequency Range",
+        "testPoint": "BOM",
+        "readOperation": "Read"
+      },
+      "specification": {
+        "frequency": [
+          {
+            "name": "f_SCLK",
+            "enable": true,
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        ],
+        "time": [
+          {
+            "name": "t_SCLKOH",
+            "enable": false,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "advanced": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "workingVoltage": {
+          "description": "Working voltage of the MIPI RFFE bus. Unit: mV",
+          "type": "number",
+          "default": 1800,
+          "minimum": 500,
+          "maximum": 24000
+        },
+        "frequencyRange": { 
+          "enum": [ 
+            "Standard Frequency Range",
+            "Standard Frequency Range - 1/2 Sub-Rate",
+            "Extended Frequency Range",
+            "Extended Frequency Range - 1/2 Sub-Rate"
+          ]
+        },
+        "testPoint": { "enum": [ "BOM", "non-BOM" ] },
+        "readOperation": { "enum": [ "Read", "sRead" ] }
+      },
+      "required": [ "frequencyRange", "testPoint", "readOperation" ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Standard Frequency Range",
+                  "Standard Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "BOM" },
+              "readOperation": { "const": "Read" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKOH",
+                        "t_SCLKOL",
+                        "t_SCLKOTR",
+                        "t_SKEW_M", 
+                        "t_SDATAOTR_M",
+                        "t_SU_M_Rd",
+                        "t_H_M_Rd",
+                        "t_SCLKOH_HSDR",
+                        "t_SCLKOL_HSDR",
+                        "t_SCLKOTR_HSDR",
+                        "t_SU_M_Rd_HSDR",
+                        "t_H_M_Rd_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { "const": "Standard Frequency Range" },
+              "testPoint": { "const": "non-BOM" },
+              "readOperation": { "const": "Read" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKIH",
+                        "t_SCLKIL",
+                        "t_SCLKITR",
+                        "t_SU_S",
+                        "t_H_S",
+                        "t_SCLKIH_HSDR",
+                        "t_SCLKIL_HSDR",
+                        "t_SCLKITR_HSDR",
+                        "t_PD_S_Rd_HSDR",
+                        "t_SDATAOTR_S_Rd_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { "const": "Standard Frequency Range - 1/2 Sub-Rate" },
+              "testPoint": { "const": "non-BOM" },
+              "readOperation": { "const": "Read" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKIH",
+                        "t_SCLKIL",
+                        "t_SCLKITR",
+                        "t_SU_S",
+                        "t_H_S",
+                        "t_SCLKIH_HSDR",
+                        "t_SCLKIL_HSDR",
+                        "t_SCLKITR_HSDR",
+                        "t_PD_S_Rd_HSDR",
+                        "t_SDATAOTR_S_Rd_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Standard Frequency Range",
+                  "Standard Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "BOM" },
+              "readOperation": { "const": "sRead" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKOH",
+                        "t_SCLKOL",
+                        "t_SCLKOTR",
+                        "t_SKEW_M", 
+                        "t_SDATAOTR_M",
+                        "t_SU_M_sR",
+                        "t_H_M_sR",
+                        "t_SCLKOH_HSDR",
+                        "t_SCLKOL_HSDR",
+                        "t_SCLKOTR_HSDR",
+                        "t_SU_M_sR_HSDR",
+                        "t_H_M_sR_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Standard Frequency Range",
+                  "Standard Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "non-BOM" },
+              "readOperation": { "const": "sRead" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKIH",
+                        "t_SCLKIL",
+                        "t_SCLKITR",
+                        "t_PD_S_sR",
+                        "t_SDATAOTR_S_sR",
+                        "t_SU_S",
+                        "t_H_S",
+                        "t_SCLKIH_HSDR",
+                        "t_SCLKIL_HSDR",
+                        "t_SCLKITR_HSDR",
+                        "t_PD_S_sR_HSDR",
+                        "t_SDATAOTR_S_sR_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Extended Frequency Range",
+                  "Extended Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "BOM" },
+              "readOperation": { "const": "Read" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKOH",
+                        "t_SCLKOL",
+                        "t_SCLKOTR",
+                        "t_SKEW_M", 
+                        "t_SDATAOTR_M",
+                        "t_SCLKOH_HSDR",
+                        "t_SCLKOL_HSDR",
+                        "t_SCLKOTR_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Extended Frequency Range",
+                  "Extended Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "non-BOM" },
+              "readOperation": { "const": "Read" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKIH",
+                        "t_SCLKIL",
+                        "t_SCLKITR",
+                        "t_SU_S",
+                        "t_H_S",
+                        "t_SCLKIH_HSDR",
+                        "t_SCLKIL_HSDR",
+                        "t_SCLKITR_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Extended Frequency Range",
+                  "Extended Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "BOM" },
+              "readOperation": { "const": "sRead" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKOH",
+                        "t_SCLKOL",
+                        "t_SCLKOTR",
+                        "t_SKEW_M", 
+                        "t_SDATAOTR_M",
+                        "t_SCLKOH_HSDR",
+                        "t_SCLKOL_HSDR",
+                        "t_SCLKOTR_HSDR",
+                        "t_SU_M_sR_HSDR",
+                        "t_H_M_sR_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "frequencyRange": { 
+                "enum": [ 
+                  "Standard Frequency Range",
+                  "Standard Frequency Range - 1/2 Sub-Rate"
+                ]
+              },
+              "testPoint": { "const": "non-BOM" },
+              "readOperation": { "const": "sRead" }
+            }
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "$ref": "#/$defs/frequencyFormat"
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_SCLKIH",
+                        "t_SCLKIL",
+                        "t_SCLKITR",
+                        "t_SU_S",
+                        "t_H_S",
+                        "t_SCLKIH_HSDR",
+                        "t_SCLKIL_HSDR",
+                        "t_SCLKITR_HSDR",
+                        "t_PD_S_sR_HSDR",
+                        "t_SDATAOTR_S_sR_HSDR"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "frequencyFormat": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Label name of the frequency specification.",
+            "type": "string",
+            "enum": [ "f_SCLK" ]
+          },
+          "enable": {
+            "default": false,
+            "type": "boolean"
+          },
+          "minimum": {
+            "description": "Minimum requirements for the frequency specification. Units: Hz",
+            "type": "number"
+          },
+          "maximum": {
+            "description": "Maximum limit for the frequency specification. Units: Hz",
+            "type": "number"
+          }
+        },
+        "required": [ "name" ],
+        "additionalProperties": false
+      }
+    },
+    "voltageFormat": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Label name of the voltage specification",
+            "type": "string",
+            "enum": [ "V_Low", "V_High" ]
+          },
+          "enable": {
+            "default": false,
+            "type": "boolean"
+          },
+          "minimum": {
+            "description": "Minimum requirements for the voltage specification. Unit: mV",
+            "type": "number"
+          },
+          "maximum": {
+            "description": "Maximum limit for the voltage specification. Unit: mV",
+            "type": "number"
+          }
+        },
+        "required": [ "name" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

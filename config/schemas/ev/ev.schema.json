@@ -15,6 +15,7 @@
         "I2C",
         "I2S",
         "MIPI SPMI",
+        "MIPI RFFE",
         "PDM",
         "3-wire SPI",
         "4-wire SPI",
@@ -88,6 +89,39 @@
             "type": "array",
             "items": {
               "$ref": "file://i2s/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "MIPI RFFE configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "MIPI RFFE"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://rffe/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://rffe/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://rffe/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://rffe/channel.json"
             }
           }
         }
