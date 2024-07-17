@@ -39,7 +39,7 @@
         "workingVoltage": {
           "description": "Working voltage of the MIPI SPMI bus. Unit: mV",
           "type": "number",
-          "default": 3300,
+          "default": 1800,
           "minimum": 500,
           "maximum": 24000
         },
