@@ -1,0 +1,55 @@
+{
+  "importSchema": "Electrical Validation",
+  "protocol": "MIPI I3C",
+  "decode": {
+    "device": [
+      {
+        "type": "I2C",
+        "staticAddress": "03h"
+      }
+    ]
+  },
+  "trigger": {
+    "commonCommandCode": "Broadcast ENEC"
+  },
+  "channel": [
+    {
+      "label": "SCL",
+      "source": 1,
+      "probe": "x10"
+    },
+    {
+      "label": "SDA",
+      "source": 2,
+      "probe": "direct-in"
+    }
+  ],
+  "validation": {
+    "advanced": {
+      "clockCount": 500
+    },
+    "general": {
+      "workingVoltage": 1800,
+      "speedMode": "SDR",
+      "busConfiguration": "Pure Bus"
+    },
+    "specification": {
+      "frequency": [
+        {
+          "name": "f_SCL_PP",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000000
+        }
+      ],
+      "time": [
+        {
+          "name": "t_LOW_OD",
+          "enable": true,
+          "minimum": 0,
+          "maximum": 1000
+        }
+      ]
+    }
+  }
+}

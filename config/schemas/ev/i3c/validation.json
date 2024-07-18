@@ -1,0 +1,948 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i3c/validation.json",
+  "title": "MIPI I3C validation specification configuration",
+  "examples": [
+    {
+      "general": {
+        "workingVoltage": 1800,
+        "speedMode": "SDR",
+        "busConfiguration": "Mixed Bus",
+        "i2cMode": "Fast Mode"
+      },
+      "specification": {
+        "frequency": [
+          {
+            "name": "f_SCL_PP",
+            "enable": true,
+            "minimum": 0,
+            "maximum": 1000000
+          }
+        ],
+        "time": [
+          {
+            "name": "t_HIGH",
+            "enable": false,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ],
+        "timeI2C": [
+          {
+            "name": "t_SU_STA",
+            "enable": true,
+            "minimum": 0,
+            "maximum": 1000
+          }
+        ]
+      }
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "advanced": {
+      "$ref": "file://common/advance.json"
+    },
+    "general": {
+      "type": "object",
+      "properties": {
+        "workingVoltage": {
+          "description": "Working voltage of the MIPI I3C bus. Unit: mV",
+          "type": "number",
+          "default": 1800,
+          "minimum": 500,
+          "maximum": 5000
+        },
+        "speedMode": {
+          "default": "SDR",
+          "enum": [ 
+            "SDR",
+            "HDR-DDR",
+            "HDR-TSL",
+            "HDR-TSP",
+            "HDR-BT"
+          ]
+        },
+        "busConfiguration": {
+          "default": "Pure Bus",
+          "enum": [
+            "Pure Bus",
+            "Mixed Bus"
+          ]
+        },
+        "i2cMode": {
+          "default": "Fast Mode",
+          "enum": [
+            "Fast Mode",
+            "Fast Mode Plus"
+          ]
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { 
+                "enum": [ 
+                  "SDR",
+                  "HDR-DDR"
+                ]
+              },
+              "busConfiguration": { "const": "Pure Bus" }
+            },
+            "required": [ "speedMode", "busConfiguration" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_SCL_PP" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD", 
+                        "t_DIG_OD_H",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH",
+                        "t_DIG_H",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { 
+                "enum": [ 
+                  "SDR",
+                  "HDR-DDR"
+                ]
+              },
+              "busConfiguration": { "const": "Mixed Bus" },
+              "i2cMode": {
+                "enum": [
+                  "Fast Mode",
+                  "Fast Mode Plus"
+                ]
+              }
+            },
+            "required": [ "speedMode", "busConfiguration", "i2cMode" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_SCL", "f_SCL_PP" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD_MIXED", 
+                        "t_DIG_OD_H_MIXED",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH_MIXED",
+                        "t_DIG_H_MIXED",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "timeI2C": {
+                "$ref": "#/$defs/timeI2CFormat"
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { "const": "HDR-TSL" },
+              "busConfiguration": { "const": "Pure Bus" }
+            },
+            "required": [ "speedMode", "busConfiguration" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_SCL_PP" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD", 
+                        "t_DIG_OD_H",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH",
+                        "t_DIG_H",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr",
+                        "t_EDGE",
+                        "t_SKEW",
+                        "t_EYE",
+                        "t_SYMBOL",
+                        "t_CLOCK"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { "const": "HDR-TSL" },
+              "busConfiguration": { "const": "Mixed Bus" },
+              "i2cMode": {
+                "enum": [
+                  "Fast Mode",
+                  "Fast Mode Plus"
+                ]
+              }
+            },
+            "required": [ "speedMode", "busConfiguration", "i2cMode" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_SCL", "f_SCL_PP" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD_MIXED", 
+                        "t_DIG_OD_H_MIXED",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH_MIXED",
+                        "t_DIG_H_MIXED",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr",
+                        "t_EDGE",
+                        "t_SKEW",
+                        "t_EYE",
+                        "t_SYMBOL",
+                        "t_CLOCK"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "timeI2C": {
+                "$ref": "#/$defs/timeI2CFormat"
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { "const": "HDR-TSP" },
+              "busConfiguration": { "const": "Pure Bus" }
+            },
+            "required": [ "speedMode", "busConfiguration" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_SCL_PP" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD", 
+                        "t_DIG_OD_H",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH",
+                        "t_DIG_H",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr",
+                        "t_EDGE",
+                        "t_SKEW",
+                        "t_EYE",
+                        "t_SYMBOL",
+                        "t_CLOCK"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { "const": "HDR-BT" },
+              "busConfiguration": { "const": "Pure Bus" }
+            },
+            "required": [ "speedMode", "busConfiguration" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_BT_FREQ" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD", 
+                        "t_DIG_OD_H",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH",
+                        "t_DIG_H",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr",
+                        "t_BT_HO",
+                        "t_BT_DBO"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "general": {
+            "type": "object",
+            "properties": {
+              "speedMode": { "const": "HDR-BT" },
+              "busConfiguration": { "const": "Mixed Bus" },
+              "i2cMode": {
+                "enum": [
+                  "Fast Mode",
+                  "Fast Mode Plus"
+                ]
+              }
+            },
+            "required": [ "speedMode", "busConfiguration", "i2cMode" ]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "specification": {
+            "type": "object",
+            "properties": {
+              "frequency": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "Label name of the frequency specification.",
+                      "type": "string",
+                      "enum": [ "f_SCL", "f_BT_FREQ" ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the frequency specification. Units: Hz",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the frequency specification. Units: Hz",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "time": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "enum": [
+                        "t_LOW_OD",
+                        "t_DIG_OD_L",
+                        "t_HIGH_INIT",
+                        "t_HIGH_OD_MIXED", 
+                        "t_DIG_OD_H_MIXED",
+                        "t_fDA_OD",
+                        "t_SU_OD",
+                        "t_CAS",
+                        "t_CBP",
+                        "t_CRHPOverlap",
+                        "t_AVAL",
+                        "t_IDLE",
+                        "t_NEWCRLock",
+                        "t_LOW",
+                        "t_DIG_L",
+                        "t_HIGH_MIXED",
+                        "t_DIG_H_MIXED",
+                        "t_SCO",
+                        "t_CR_PP",
+                        "t_CF_PP",
+                        "t_HD_PP_Controller",
+                        "t_HD_PP_Target",
+                        "t_SU_PP",
+                        "t_CASr",
+                        "t_CBRr",
+                        "t_BT_HO",
+                        "t_BT_DBO"
+                      ]
+                    },
+                    "enable": {
+                      "default": false,
+                      "type": "boolean"
+                    },
+                    "minimum": {
+                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "type": "number"
+                    },
+                    "maximum": {
+                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "type": "number"
+                    }
+                  },
+                  "required": [ "name" ],
+                  "additionalProperties": false
+                }
+              },
+              "timeI2C": {
+                "$ref": "#/$defs/timeI2CFormat"
+              },
+              "voltage": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "timeI2CFormat": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "enum": [
+              "t_SU_STA",
+              "t_HD_STA",
+              "t_LOW",
+              "t_DIG_L", 
+              "t_HIGH",
+              "t_DIG_H",
+              "t_SU_DAT",
+              "t_HD_DAT",
+              "t_rCL",
+              "t_fCL",
+              "t_rDA",
+              "t_rDA_OD",
+              "t_fDA",
+              "t_SU_STO",
+              "t_BUF",
+              "t_SPIKE"
+            ]
+          },
+          "enable": {
+            "default": false,
+            "type": "boolean"
+          },
+          "minimum": {
+            "description": "Minimum requirements for the timing specification. Unit: ns",
+            "type": "number"
+          },
+          "maximum": {
+            "description": "Maximum limit for the timing specification. Unit: ns",
+            "type": "number"
+          }
+        },
+        "required": [ "name" ],
+        "additionalProperties": false
+      }
+    },
+    "voltageFormat": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "description": "Label name of the voltage specification",
+            "type": "string",
+            "enum": [ "V_Low", "V_High" ]
+          },
+          "enable": {
+            "default": false,
+            "type": "boolean"
+          },
+          "minimum": {
+            "description": "Minimum requirements for the voltage specification. Unit: mV",
+            "type": "number"
+          },
+          "maximum": {
+            "description": "Maximum limit for the voltage specification. Unit: mV",
+            "type": "number"
+          }
+        },
+        "required": [ "name" ],
+        "additionalProperties": false
+      }
+    }
+  },
+  "unevaluatedProperties": false
+}

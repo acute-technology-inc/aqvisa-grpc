@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i3c/trigger.json",
+  "title": "MIPI I3C trigger configuration",
+  "examples": [
+    {
+      "address": "7Eh"
+    },
+    {
+      "commonCommandCode": "Broadcast ENEC"
+    }
+  ],
+  "type": "object",
+  "oneOf": [
+    {
+      "properties": {
+        "address": {
+          "type": "string",
+          "default": "XXh",
+          "pattern": "^[0-7X]{1}[0-9A-FX]{1}h"
+        }
+      },
+      "required": [ "address" ],
+      "not": {
+        "required": [ "commonCommandCode" ]
+      }
+    },
+    {
+      "properties": {
+        "commonCommandCode": {
+          "default": "Any",
+          "enum": [
+            "Any",
+            "Broadcast ENEC",
+            "Braodcast DISEC",
+            "Braodcast ENTAS0",
+            "Braodcast ENTAS1",
+            "Braodcast ENTAS2",
+            "Braodcast ENTAS3",
+            "Braodcast RSTDAA",
+            "Braodcast ENTDAA",
+            "Braodcast DEFSLVS",
+            "Braodcast SETMWL",
+            "Braodcast SETMRL",
+            "Braodcast ENTTM",
+            "Braodcast SETBUSCON",
+            "Braodcast ENDXFER",
+            "Braodcast ENTHDR0",
+            "Braodcast ENTHDR1",
+            "Braodcast ENTHDR2",
+            "Braodcast ENTHDR3",
+            "Braodcast ENTHDR4",
+            "Braodcast ENTHDR5",
+            "Braodcast ENTHDR6",
+            "Braodcast ENTHDR7",
+            "Broadcast SETXTIME",
+            "Broadcast SETAASA",
+            "Broadcast RSTACT",
+            "Broadcast DEFGRPA",
+            "Broadcast RSTGRPA",
+            "Broadcast MLANE",
+            "Direct ENEC",
+            "Direct DISEC",
+            "Direct ENTAS0",
+            "Direct ENTAS1",
+            "Direct ENTAS2",
+            "Direct ENTAS3",
+            "Direct RSTDAA",
+            "Direct SETDASA",
+            "Direct SETNEWDA",
+            "Direct SETMRL",
+            "Direct SETMRL",
+            "Direct GETMWL",
+            "Direct GETMRL",
+            "Direct GETPID",
+            "Direct GETBCR",
+            "Direct GETDCR",
+            "Direct GETSTATUS",
+            "Direct GETACCCR",
+            "Direct ENDXFER",
+            "Direct SETBRGTGT",
+            "Direct GETMXDS",
+            "Direct GETCAPS",
+            "Direct SETROUTE",
+            "Direct D2DXFER",
+            "Direct SETXTIME",
+            "Direct GETXTIME",
+            "Direct RSTACT",
+            "Direct SETGRPA",
+            "Direct RSTGRPA",
+            "Direct MLANE"
+          ]
+        }
+      },
+      "required": [ "commonCommandCode" ],
+      "not": {
+        "required": "address"
+      }
+    }
+  ],
+  "unevaluatedProperties": false
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://i3c/decode.json",
+  "title": "MIPI I3C decode configuration",
+  "examples": [
+    {
+      "device": [
+        {
+          "type": "I2C",
+          "staticAddress": "03h"
+        }
+      ]
+    }
+  ],
+  "type": "object",
+  "properties": {
+    "device": {
+      "description": "Device type conguration on I3C bus. Set the address value for I2C legacy devices when Mixed Bus configuration is set.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "const": "I2C" },
+          "staticAddress": {
+            "type": "string",
+            "default": "03h",
+            "pattern": "^[0-7]{1}[0-9A-F]{1}h"
+          }
+        },
+        "required": [ "type", "staticAddress" ]
+      },
+      "maxItems": 8
+    }
+  },
+  "additionalProperties": false
+}
+

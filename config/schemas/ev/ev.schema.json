@@ -14,6 +14,7 @@
       "enum": [
         "I2C",
         "I2S",
+        "MIPI I3C",
         "MIPI SPMI",
         "MIPI RFFE",
         "PDM",
@@ -89,6 +90,39 @@
             "type": "array",
             "items": {
               "$ref": "file://i2s/channel.json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "description": "MIPI I3C configuration.",
+      "if": {
+        "properties": {
+          "protocol": {
+            "const": "MIPI I3C"
+          }
+        },
+        "required": [
+          "protocol"
+        ]
+      },
+      "then": {
+        "type": "object",
+        "properties": {
+          "decode": {
+            "$ref": "file://i3c/decode.json"
+          },
+          "trigger": {
+            "$ref": "file://i3c/trigger.json"
+          },
+          "validation": {
+            "$ref": "file://i3c/validation.json"
+          },
+          "channel": {
+            "type": "array",
+            "items": {
+              "$ref": "file://i3c/channel.json"
             }
           }
         }
