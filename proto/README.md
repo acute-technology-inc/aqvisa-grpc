@@ -121,6 +121,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 | **1024** | AQVI_WAVEFORM_NOT_READY | Error: Waveform data not ready |
 | **1025** | AQVI_NOT_IN_EV_MODE | Error: Software is not configured in EV mode|
 | **1026** | AQVI_NO_EV_ANALYSIS_RESULT | Error: Software doesn't have any valid EV analysis result |
+| **1027** | AQVI_SELECT_DEV_NOT_EXIST | Error: Selected Device S/N not presented in device list |
 | **9995** | AQVI_UNSUPPORT_FEATURE | Error: Unsupported feature |
 | **9996** | AQVI_UNFINISHED_FEATURE | Error: Unfinished Feature |
 | **9997** | AQVI_UNKNOWN_COMMAND_ERROR | Error: Unknown command |
