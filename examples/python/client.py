@@ -44,10 +44,10 @@ async def viSingleRequest(strCommand: bytes) -> None:
               f"\t- Response: {response.command_response}")
 
 
-def main() -> None:
-    tasks = [viSingleRequest(command) for command in command_list]
-    asyncio.run(asyncio.wait(tasks))
+async def main() -> None:
+    tasks = [asyncio.create_task(viSingleRequest(command)) for command in command_list]
+    _, _ = await asyncio.wait(tasks)
 
 
 if __name__ == '__main__':
-    main()
+    asyncio.run(main())
