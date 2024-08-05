@@ -1,0 +1,88 @@
+{
+  "importSchema": "Power Sequence",
+  "analog": {
+    "sampleRate": 10000000,
+    "channel": [
+      {
+        "source": 0,
+        "label": "Analog Channel #1",
+        "voltDiv": 1000,
+        "voltOffset": 0,
+        "probeAttn": "x10",
+        "bandwidthLimit": "FULL",
+        "coupling": "DC"
+      },
+      {
+        "source": 1,
+        "label": "Analog Channel #2",
+        "voltDiv": 1000,
+        "voltOffset": 0,
+        "probeAttn": "x10",
+        "bandwidthLimit": "FULL",
+        "coupling": "DC"
+      }
+    ]
+  },
+  "digital": {
+    "sampleRate": 10000000,
+    "channel": [
+      {
+        "source": 0,
+        "label": "Digital Channel #1"
+      }
+    ]
+  },
+  "trigger": {
+    "position": 50,
+    "sourceLabel": "Analog Channel #1",
+    "type": "ANALOG_CH_RISING",
+    "voltageLevel": 1000
+  },
+  "recordLength": 1000,
+  "transitionalMode": false,
+  "useHysteresis": false,
+  "useSchmittCircuit": false,
+  "rangeStart": "CursorA",
+  "rangeEnd": "CursorB",
+  "timingCheck": [
+    {
+      "description": "Sample Timing Specification",
+      "specName": "Timing #1",
+      "specType": "CHA_RISE_TO_CHB_RISE",
+      "sourceALabel": "Analog Channel #1",
+      "sourceBLabel": "Analog Channel #2",
+      "sourceAPassCount": 0,
+      "sourceBPassCount": 0,
+      "sourceARefVoltage": 1700,
+      "sourceBRefVoltage": "30%",
+      "minimum": 1,
+      "maximum": 10
+    },
+    {
+      "description": "Sample Voltage Specification",
+      "specName": "Voltage #1",
+      "specType": "CHA_V_HIGH",
+      "sourceALabel": "Analog Channel #1",
+      "minimum": 2800,
+      "maximum": 3500
+    },
+    {
+      "description": "Sample Slew Rate Specification",
+      "specName": "Slew Rate #1",
+      "specType": "CHA_SLEW_RATE",
+      "sourceALabel": "Analog Channel #1",
+      "sourceARefVoltage": 1700,
+      "sourceBRefVoltage": 2000,
+      "minimum": 25,
+      "maximum": 50
+    },
+    {
+      "description": "Sample Counting Specification",
+      "specName": "Counting #1",
+      "specType": "CHA_HIGH_PULSE_COUNT",
+      "sourceALabel": "Analog Channel #1",
+      "minimum": 1,
+      "maximum": 10
+    }
+  ]
+}

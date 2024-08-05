@@ -1,0 +1,520 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "file://ps.schema.json",
+  "title": "Power Sequence Schema",
+  "examples": [
+    {
+      "importSchema": "Power Sequence",
+      "analog": {
+        "sampleRate": 10000000,
+        "channel": [
+          {
+            "source": 0,
+            "label": "Analog Channel #1",
+            "voltDiv": 1000,
+            "voltOffset": 0,
+            "probeAttn": "x10",
+            "bandwidthLimit": "FULL",
+            "coupling": "DC"
+          },
+          {
+            "source": 1,
+            "label": "Analog Channel #2",
+            "voltDiv": 1000,
+            "voltOffset": 0,
+            "probeAttn": "x10",
+            "bandwidthLimit": "FULL",
+            "coupling": "DC"
+          }
+        ]
+      },
+      "digital": {
+        "sampleRate": 10000000,
+        "channel": [
+          {
+            "source": 0,
+            "label": "Digital Channel #1"
+          }
+        ], 
+        "threshold": [
+          1700,
+          1700
+        ]
+      },
+      "trigger": {
+        "position": 50,
+        "sourceLabel": "Analog Channel #1",
+        "type": "ANALOG_CH_RISING",
+        "voltageLevel": 1000
+      },
+      "recordLength": 1000,
+      "transitionalMode": false,
+      "useHysteresis": false,
+      "useSchmittCircuit": false,
+      "rangeStart": "CursorA",
+      "rangeEnd": "CursorB",
+      "timingCheck": [
+        {
+          "description": "Sample Timing Specification",
+          "specName": "Timing #1",
+          "specType": "CHA_RISE_TO_CHB_RISE",
+          "sourceALabel": "Analog Channel #1",
+          "sourceBLabel": "Analog Channel #2",
+          "sourceAPassCount": 0,
+          "sourceBPassCount": 0,
+          "sourceARefVoltage": 1700,
+          "sourceBRefVoltage": "30%",
+          "minimum": 1,
+          "maximum": 10
+        },
+        {
+          "description": "Sample Voltage Specification",
+          "specName": "Voltage #1",
+          "specType": "CHA_V_HIGH",
+          "sourceALabel": "Analog Channel #1",
+          "minimum": 2800,
+          "maximum": 3500
+        },
+        {
+          "description": "Sample Slew Rate Specification",
+          "specName": "Slew Rate #1",
+          "specType": "CHA_SLEW_RATE",
+          "sourceALabel": "Analog Channel #1",
+          "sourceARefVoltage": 1700,
+          "sourceBRefVoltage": 2000,
+          "minimum": 25,
+          "maximum": 50
+        },
+        {
+          "description": "Sample Counting Specification",
+          "specName": "Counting #1",
+          "specType": "CHA_HIGH_PULSE_COUNT",
+          "sourceALabel": "Analog Channel #1",
+          "minimum": 1,
+          "maximum": 10
+        }
+      ]
+    }
+  ],
+  "description": "This is a schema for importing Power Sequence configuration by sending payload through gRPC.",
+  "type": "object",
+  "properties": {
+    "importSchema": {
+      "description": "Name of the schema.",
+      "const": "Power Sequence"
+    },
+    "analog": {
+      "description": "Analog configuration including channels and sample rate setup.",
+      "type": "object",
+      "properties": {
+        "sampleRate": {
+          "$ref": "#/$defs/frequencyFormat"
+        },
+        "channel": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 16,
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "description": "Source channel index (ex. 0 for DSO 0).",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 15
+              },
+              "label": {
+                "description": "Source channel name.",
+                "$ref": "#/$defs/labelFormat"
+              },
+              "voltDiv": {
+                "$ref": "#/$defs/voltageFormat"
+              },
+              "voltOffset": {
+                "$ref": "#/$defs/voltageFormat"
+              },
+              "probeAttn": {
+                "default": "x10",
+                "enum": [ "x10", "x1" ]
+              },
+              "bandwidthLimit": {
+                "default": "FULL",
+                "enum": [ "FULL", "100MHz", "20MHz" ]
+              },
+              "coupling": {
+                "default": "DC",
+                "enum": [ "DC", "AC" ]
+              }
+            },
+            "additionalProperties": false,
+            "required": [
+              "source",
+              "label"
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "digital": {
+      "description": "Digital configuration including channels and sample rate setup.",
+      "type": "object",
+      "properties": {
+        "sampleRate": {
+          "$ref": "#/$defs/frequencyFormat"
+        },
+        "channel": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 256,
+          "items": {
+            "type": "object",
+            "properties": {
+              "source": {
+                "description": "Source channel index (ex. 0 for CH 0).",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 255
+              },
+              "label": {
+                "description": "Source channel name.",
+                "$ref": "#/$defs/labelFormat"
+              }
+            },
+            "required": [ "source", "label" ],
+            "additionalProperties": false
+          },
+          "threshold": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "$ref": "#/$defs/voltageFormat"
+            }    
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "recordLength": {
+      "description": "Number of recorded samples",
+      "type": "integer",
+      "minimum": 1000
+    },
+    "transitionalMode": {
+      "description": "Enable/Disable transitional storage during recording.",
+      "default": false,
+      "type": "boolean"
+    },
+    "threshold": {
+      "type": "array",
+      "maxItems": 4,
+      "items": {
+        "$ref": "#/$defs/voltageFormat"
+      }
+    },
+    "trigger": {
+      "description": "Trigger configurations",
+      "type": "object",
+      "properties": {
+        "position": {
+          "default": 50,
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 99
+        },
+        "sourceLabel": {
+          "$ref": "#/$defs/labelFormat"
+        },
+        "type": {
+          "enum": [
+            "CHANNEL_LOW",
+            "CHANNEL_HIGH",
+            "CHANNEL_ANY",
+            "CHANNEL_RISING",
+            "CHANNEL_FALLING",
+            "CHANNEL_CHANGING",
+            "ANALOG_CH_RISING",
+            "ANALOG_CH_FALLING"
+          ]
+        },
+        "voltageLevel": {
+          "$ref": "#/$defs/voltageFormat"
+        }
+      },
+      "required": [ "sourceLabel", "type" ],
+      "additionalProperties": false
+    },
+    "useSchmittCircuit": {
+      "description": "Enable/Disable Schmitt Circuit function.",
+      "default": false,
+      "type": "boolean"
+    },
+    "useHysteresis": {
+      "description": "Enable/Disable hysteresis function.",
+      "default": false,
+      "type": "boolean"
+    },
+    "rangeStart": {
+      "description": "The start position of calculating measurements.",
+      "$ref": "#/$defs/cursorFormat"
+    },
+    "rangeEnd": {
+      "description": "The end position of calculating measurements.",
+      "$ref": "#/$defs/cursorFormat"
+    },
+    "timingCheck": {
+      "description": "List of specification for measurements",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "properties": {
+              "description": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specName": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specType": {
+                "enum": [
+                  "CHA_RISE_TO_CHB_RISE",
+                  "CHA_RISE_TO_CHB_FALL",
+                  "CHA_FALL_TO_CHB_RISE",
+                  "CHA_FALL_TO_CHB_FALL",
+                  "CHA_RISE_TO_NEXT_CHB_RISE",
+                  "CHA_RISE_TO_NEXT_CHB_FALL",
+                  "CHA_FALL_TO_NEXT_CHB_RISE",
+                  "CHA_FALL_TO_NEXT_CHB_FALL",
+                  "CHA_RISE_TO_PREV_CHB_RISE",
+                  "CHA_RISE_TO_PREV_CHB_FALL",
+                  "CHA_FALL_TO_PREV_CHB_RISE",
+                  "CHA_FALL_TO_PREV_CHB_FALL",
+                  "CHA_RISE_TO_FAREST_CHB_RISE",
+                  "CHA_RISE_TO_FAREST_CHB_FALL",
+                  "CHA_FALL_TO_FAREST_CHB_RISE",
+                  "CHA_FALL_TO_FAREST_CHB_FALL",
+                  "CHA_HIGH_TIME",
+                  "CHA_LOW_TIME",
+                  "CHA_RISE_TIME",
+                  "CHA_FALL_TIME"
+                ]
+              },
+              "sourceALabel": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "sourceBLabel": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "sourceARefVoltage": {
+                "$ref":"#/$defs/sourceRefFormat"
+              },
+              "sourceBRefVoltage": {
+                "$ref":"#/$defs/sourceRefFormat"
+              },
+              "sourceAPassCount": {
+                "$ref":"#/$defs/passCountFormat"
+              },
+              "sourceBPassCount": {
+                "$ref":"#/$defs/passCountFormat"
+              },
+              "minimum": {
+                "$ref": "#/$defs/timeFormat"
+              },
+              "maximum": {
+                "$ref": "#/$defs/timeFormat"
+              }
+            },
+            "required": [
+              "specName",
+              "specType",
+              "sourceALabel",
+              "sourceBLabel"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "description": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specName": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specType": {
+                "enum": [
+                  "CHA_V_MAX",
+                  "CHA_V_MIN",
+                  "CHA_V_PP",
+                  "CHA_V_HIGH",
+                  "CHA_V_LOW",
+                  "CHA_V_AMPLITUDE",
+                  "CHA_V_MEAN"
+                ]
+              },
+              "sourceALabel": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "minimum": {
+                "$ref": "#/$defs/voltageFormat"
+              },
+              "maximum": {
+                "$ref": "#/$defs/voltageFormat"
+              }
+            },
+            "required": [
+              "specName",
+              "specType",
+              "sourceALabel"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "description": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specName": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specType": {
+                "type": "string",
+                "enum": [
+                  "CHA_HIGH_PULSE_COUNT",
+                  "CHA_LOW_PULSE_COUNT",
+                  "CHA_RISE_EDGE_COUNT",
+                  "CHA_FALL_EDGE_COUNT",
+                  "CHA_EDGE_COUNT"
+                ]
+              },
+              "sourceALabel": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "sourceARefVoltage": {
+                "$ref":"#/$defs/voltageFormat"
+              },
+              "sourceARefPercent": {
+                "$ref":"#/$defs/sourceRefFormat"
+              },
+              "sourceAPassCount": {
+                "$ref":"#/$defs/passCountFormat"
+              },
+              "minimum": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "maximum": {
+                "type": "integer",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "specName",
+              "specType",
+              "sourceALabel"
+            ],
+            "additionalProperties": false
+          },
+          {
+            "properties": {
+              "specName": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "specType": {
+                "const": "CHA_SLEW_RATE"
+              },
+              "description": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "sourceALabel": {
+                "$ref": "#/$defs/labelFormat"
+              },
+              "sourceARefVoltage": {
+                "$ref":"#/$defs/sourceRefFormat"
+              },
+              "sourceBRefVoltage": {
+                "$ref":"#/$defs/sourceRefFormat"
+              },
+              "sourceAPassCount": {
+                "$ref":"#/$defs/passCountFormat"
+              },
+              "minimum": {
+                "$ref": "#/$defs/slewRateFormat"
+              },
+              "maximum": {
+                "$ref": "#/$defs/slewRateFormat"
+              }
+            },
+            "required": [
+              "specName",
+              "specType",
+              "sourceALabel"
+            ],
+            "additionalProperties": false
+          }
+        ]
+      }
+    }
+  },
+  "required": [
+    "importSchema"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "cursorFormat": {
+      "type": "string",
+      "pattern": "^Cursor[A-Z]$"
+    },
+    "percentFormat": {
+      "type": "string",
+      "pattern": "^([1-9]?[0-9]?|100)%$"
+    },
+    "frequencyFormat":  {
+      "description": "Frequency formatting. Unit: Hz",
+      "type": "number",
+      "minimum": 0
+    },
+    "timeFormat": {
+      "description": "Timing formatting. Unit: ns",
+      "type": "number",
+      "minimum": 0
+    },
+    "voltageFormat": {
+      "description": "Voltage formatting. Unit: mV",
+      "type": "number"
+    },
+    "slewRateFormat": {
+      "description": "Slew rate formatting. Unit: mV/us",
+      "type": "number"
+    },
+    "labelFormat": {
+      "type": "string",
+      "pattern": "[\\w,\\- ]+"
+    },
+    "sourceRefFormat": {
+      "description": "Reference level format, accept either voltage format with numeric values or percentage format string.",
+      "oneOf": [
+        {
+          "$ref":"#/$defs/voltageFormat"
+        },
+        {
+          "$ref":"#/$defs/percentFormat"
+        }
+      ]     
+    },
+    "passCountFormat": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "validateMode": {
+      "default": "TimingCheck+HwStrap",
+      "enum": [
+        "TimingCheck+HwStrap",
+        "TimingCheck",
+        "HwStrap"
+      ]
+    }
+  }
+}
