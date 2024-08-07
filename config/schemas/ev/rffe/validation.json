@@ -112,11 +112,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -178,11 +178,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -244,11 +244,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -317,11 +317,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -390,11 +390,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -459,11 +459,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -525,11 +525,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -593,11 +593,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -664,11 +664,11 @@
                       "type": "boolean"
                     },
                     "minimum": {
-                      "description": "Minimum requirements for the timing specification. Unit: ns",
+                      "description": "Minimum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     },
                     "maximum": {
-                      "description": "Maximum limit for the timing specification. Unit: ns",
+                      "description": "Maximum requirements for the timing specification (unit: ms) and don't assign value to represent as don't care term",
                       "type": "number"
                     }
                   },
@@ -702,11 +702,11 @@
             "type": "boolean"
           },
           "minimum": {
-            "description": "Minimum requirements for the frequency specification. Units: Hz",
+            "description": "Minimum requirements for the frequency specification (units: Hz) and don't assign value to represent as don't care term",
             "type": "number"
           },
           "maximum": {
-            "description": "Maximum limit for the frequency specification. Units: Hz",
+            "description": "Maximum requirements for the frequency specification (units: Hz) and don't assign value to represent as don't care term",
             "type": "number"
           }
         },
@@ -729,11 +729,11 @@
             "type": "boolean"
           },
           "minimum": {
-            "description": "Minimum requirements for the voltage specification. Unit: mV",
+            "description": "Minimum requirements for the voltage specification (unit: mV) and don't assign value to represent as don't care term",
             "type": "number"
           },
           "maximum": {
-            "description": "Maximum limit for the voltage specification. Unit: mV",
+            "description": "Maximum requirements for the voltage specification (unit: mV) and don't assign value to represent as don't care term",
             "type": "number"
           }
         },
