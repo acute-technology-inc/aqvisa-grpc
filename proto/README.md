@@ -102,7 +102,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
     - bytes ***payload***: Requested JSON payload
     - int64 ***ret_count***: Requested JSON payload size
 
-## Status Code
+## Enums
 
 ### AQVI_JSON_SCHEMA
 
