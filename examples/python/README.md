@@ -42,7 +42,7 @@ Add any custom commands in `command_list` to try out any commands you prefer.
 
 Additionally replace the `json_file` variable with a dedicated path.
 
-The, simply run the code to send a JSON payload to the application.
+Then, simply run the code to send a JSON payload to the application.
 
 ```
 python write_file.py
