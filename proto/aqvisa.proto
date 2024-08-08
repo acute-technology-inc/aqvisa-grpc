@@ -9,6 +9,7 @@ option objc_class_prefix = "Acute";
 
 service AqVISA {
     rpc ViRead (ViReadRequest) returns (ViReadResponse) {}
+    rpc ViReadToFile (ViReadToFileRequest) returns (ViReadToFileResponse) {}
     rpc ViWrite (ViWriteRequest) returns (ViWriteResponse) {}
     rpc ViWriteFromFile (ViWriteFromFileRequest) returns (ViWriteFromFileResponse) {}
     rpc ViGetCommandResult (ViGetCommandResultRequest) returns (ViGetCommandResultResponse) {
@@ -38,6 +39,9 @@ enum AQVI_STATUS {
 
     // Error: Input parameter incompleted
     AQVI_INPUT_PARAMETER_INCOMPLETED = 14;
+
+    // Error: Input request timeout
+    AQVI_TIMEOUT = 15;
 
     // Error: Not supported in current software
     AQVI_NOT_SUPPORTED = 1000;
@@ -136,6 +140,14 @@ enum AQVI_STATUS {
     AQVI_UNKNOWN_ERROR = 9998;
 }
 
+enum AQVI_JSON_SCHEMA {
+    // Zero value to compliant to protobuf, not used
+    AQVI_JSON_SCHEMA_DUMMY = 0;
+    
+    // Electrical Validation Schema
+    AQVI_JSON_SCHEMA_ELECTRICAL_VALIDATION = 1;
+}
+
 message ViReadRequest {
     bytes job_id = 1 [deprecated = true];
     int64 count = 2;
@@ -144,6 +156,17 @@ message ViReadRequest {
 message ViReadResponse {
     AQVI_STATUS status_code = 1;
     optional bytes command_response = 2;
+    optional int64 ret_count = 3;
+}
+
+message ViReadToFileRequest {
+    AQVI_JSON_SCHEMA schema_type = 1;
+    int64 count = 2;
+}
+
+message ViReadToFileResponse {
+    AQVI_STATUS status_code = 1;
+    optional bytes payload = 2;
     optional int64 ret_count = 3;
 }
 
