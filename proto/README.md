@@ -85,7 +85,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 
 * Parameter
 
-    - [AQVI_JSON_SCHEMA](#JSON_SCHEMA) ***schema_type***: Logical index of schema type
+    - [AQVI_JSON_SCHEMA](#AQVI_JSON_SCHEMA) ***schema_type***: Logical index of schema type
     - int64 ***count***: Input buffer size for accepting requested payload
     Currently supported schema is as follows
 
@@ -103,6 +103,13 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
     - int64 ***ret_count***: Requested JSON payload size
 
 ## Status Code
+
+### AQVI_JSON_SCHEMA
+
+| Value | Enum | Description |
+| ----- | ---- | ----------- |
+| **0** | AQVI_JSON_SCHEMA_DUMMY | Not in use |
+| **1** | AQVI_JSON_SCHEMA_ELECTRICAL_VALIDATION | Electrical Validation Configuration|
 
 ### AQVI_STATUS
 
