@@ -40,13 +40,15 @@ Add any custom commands in `command_list` to try out any commands you prefer.
 
 ### ViWriteFromFile & ViReadToFile
 
-Simply run the code to send a JSON payload to the application.
+Additionally replace the `json_file` variable with a dedicated path.
+
+The, simply run the code to send a JSON payload to the application.
 
 ```
 python write_file.py
 ```
 
-Alternatively, request a JSON config from the application.
+Besides, you are able to request a JSON config from the application.
 
 ```
 python read_file.py
