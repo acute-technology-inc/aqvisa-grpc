@@ -24,14 +24,30 @@ python -m grpc_tools.protoc -Iproto
 
 For more information about protobuf, please visit [Protocol Buffers](https://protobuf.dev/) official website.
 
-## Sample Client
+## Sample Codes
 
+Please replace the `address` variable with your own ip and port first. You can obtain those values from the DSO or LA application.
 
+### ViWrite & ViRead
 
-Before excuting `client.py`, please replace the `address` variable with your own ip and port. You can obtain those values from the DSO / LA application.
+Simply run the code to make a single request to the application
 
 ```
-python client.py
+python write_read.py
 ```
 
-Simply add any custom commands in `command_list` to try out any commands you prefer.
+Add any custom commands in `command_list` to try out any commands you prefer.
+
+### ViWriteFromFile & ViReadToFile
+
+Simply run the code to send a JSON payload to the application.
+
+```
+python write_file.py
+```
+
+Alternatively, request a JSON config from the application.
+
+```
+python read_file.py
+```

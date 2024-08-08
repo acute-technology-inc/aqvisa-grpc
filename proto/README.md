@@ -81,6 +81,27 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
     - bytes ***jobid***: Represents the unique identification of the [ViWriteFromFile](#ViWriteFromFile) call.
     - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
 
+### ViReadToFileRequest
+
+* Parameter
+
+    - [AQVI_JSON_SCHEMA](#JSON_SCHEMA) ***schema_type***: Logical index of schema type
+    - int64 ***count***: Input buffer size for accepting requested payload
+    Currently supported schema is as follows
+
+
+        | Schema Name | Schema |
+        | ----------- | ------ |
+        | Electrical Validation | [Schema](../config/schemas/ev/ev.schema.json) |
+
+### ViReadToFileResponse
+
+* Parameter
+
+    - [AQVI_STATUS](#AQVI_STATUS) ***status_code***: Return status.
+    - bytes ***payload***: Requested JSON payload
+    - int64 ***ret_count***: Requested JSON payload size
+
 ## Status Code
 
 ### AQVI_STATUS
@@ -94,6 +115,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 | **12** | AQVI_PREVIOUS_CMD_PROCESSING | Warn: Previous command still processing |
 | **13** | AQVI_INPUT_PARAMETER_UNKNOWN | Error: Input parameter unknown or not supported |
 | **14** | AQVI_INPUT_PARAMETER_INCOMPLETED | Error: Input parameter incompleted |
+| **15** | AQVI_TIMEOUT | Error: Input request timeout |
 | **1000** | AQVI_NOT_SUPPORTED | Error: Not supported in current software |
 | **1001** | AQVI_INCOMPLETE_COMMAND | Error: Command incomplete |
 | **1002** | AQVI_SUBWND_INVALID | Error: Input command requires exist SubWindow |
