@@ -122,7 +122,7 @@ For the *JSON* config, please see [**schema**](https://github.com/acute-technolo
 | **12** | AQVI_PREVIOUS_CMD_PROCESSING | Warn: Previous command still processing |
 | **13** | AQVI_INPUT_PARAMETER_UNKNOWN | Error: Input parameter unknown or not supported |
 | **14** | AQVI_INPUT_PARAMETER_INCOMPLETED | Error: Input parameter incompleted |
-| **15** | AQVI_TIMEOUT | Error: Input request timeout |
+| **15** | AQVI_TIMEOUT | (since v1.2.0) Error: Input request timeout |
 | **1000** | AQVI_NOT_SUPPORTED | Error: Not supported in current software |
 | **1001** | AQVI_INCOMPLETE_COMMAND | Error: Command incomplete |
 | **1002** | AQVI_SUBWND_INVALID | Error: Input command requires exist SubWindow |
