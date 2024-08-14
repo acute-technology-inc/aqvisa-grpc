@@ -40,15 +40,9 @@
     "data": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "default": "XXh",
-            "pattern": "^[0-9A-FX]{1,4}h"
-          }
-        },
-        "additionalProperties": false
+        "type": "string",
+        "default": "XXh",
+        "pattern": "^[0-9A-FX]{1,4}h"
       },
       "minItems": 1,
       "maxItems": 8
