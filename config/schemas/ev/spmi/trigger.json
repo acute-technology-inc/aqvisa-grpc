@@ -8,9 +8,7 @@
       "slaveAddress": "Xh",
       "registerAddress": "XXXXh",
       "data": [
-        {
-          "value": "XXh"
-        }
+        "XXh"
       ]
     }
   ],
@@ -52,15 +50,9 @@
     "data": {
       "type": "array",
       "items": {
-        "type": "object",
-        "properties": {
-          "value": {
-            "type": "string",
-            "default": "XXh",
-            "pattern": "^[0-9A-FX]{1,2}h"
-          }
-        },
-        "additionalProperties": false
+        "type": "string",
+        "default": "XXh",
+        "pattern": "^[0-9A-FX]{1,2}h"
       },
       "minItems": 1,
       "maxItems": 16

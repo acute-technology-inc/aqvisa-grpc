@@ -9,9 +9,7 @@
     "slaveAddress": "Xh",
     "registerAddress": "XXXXh",
     "data": [
-      {
-        "value": "XXh"
-      }
+      "XXh"
     ]
   },
   "channel": [
