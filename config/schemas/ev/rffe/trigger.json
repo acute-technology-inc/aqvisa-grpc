@@ -21,9 +21,7 @@
       "slaveAddress": "Xh",
       "registerLowerAddress": "XXh",
       "data": [
-        {
-          "value": "XXh"
-        }
+        "XXh"
       ]
     }
   ],
@@ -281,15 +279,9 @@
       "pattern": "^[0-9A-FX]{1,2}h"
     },
     "dataFormat": {
-      "type": "object",
-      "properties": {
-        "value": {
-          "type": "string",
-          "default": "XXh",
-          "pattern": "^[0-9A-FX]{1,2}h"
-        }
-      },
-      "additionalProperties": false
+      "type": "string",
+      "default": "XXh",
+      "pattern": "^[0-9A-FX]{1,2}h"
     }
   },
   "unevaluatedProperties": false

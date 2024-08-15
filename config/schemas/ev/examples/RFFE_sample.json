@@ -7,15 +7,9 @@
     "registerLowerAddress": "XXh",
     "registerUpperAddress": "XXh",
     "data": [
-      {
-        "value": "X1h"
-      },
-      {
-        "value": "X2h"
-      },
-      {
-        "value": "X3h"
-      }
+      "X1h",
+      "X2h",
+      "X3h"
     ]
   },
   "channel": [
