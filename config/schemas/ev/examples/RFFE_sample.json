@@ -2,7 +2,7 @@
   "importSchema": "Electrical Validation",
   "protocol": "MIPI RFFE",
   "trigger": {
-    "commandSequence": "Any Command",
+    "commandSequence": "Extended Register Write Long",
     "slaveAddress": "Xh",
     "registerLowerAddress": "XXh",
     "registerUpperAddress": "XXh",
