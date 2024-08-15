@@ -727,7 +727,7 @@
                         "t_CASr",
                         "t_CBRr",
                         "t_BT_HO",
-                        "t_BT_DBO"
+                        "t_BT_DBD"
                       ]
                     },
                     "enable": {
@@ -840,7 +840,7 @@
                         "t_CASr",
                         "t_CBRr",
                         "t_BT_HO",
-                        "t_BT_DBO"
+                        "t_BT_DBD"
                       ]
                     },
                     "enable": {
